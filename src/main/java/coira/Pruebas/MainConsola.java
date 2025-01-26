@@ -4,7 +4,7 @@
  */
 package coira.Pruebas;
 
-import ch.ntb.usb.USBException;
+
 import coira.Midi.SalidaMidi;
 import coira.USB.EntradaGuitarra;
 import javax.sound.midi.MidiUnavailableException;
@@ -15,7 +15,7 @@ import javax.sound.midi.MidiUnavailableException;
  */
 public class MainConsola {
     
-    public static void main(String[] args) throws USBException, MidiUnavailableException  {
+    public static void main(String[] args) throws  MidiUnavailableException  {
         //EntradaGuitarra guitarra = new EntradaGuitarra("");
         //SalidaMidi salida = new SalidaMidi();
         //guitarra.addObserver(salida);

@@ -24,10 +24,15 @@ import coira.guitarra.ordenes.OrdenSwitchOnOffSlide;
 import coira.guitarra.ordenes.OrdenToNeck;
 import coira.properties.GeneralProperties;
 import coira.properties.GuitarProperties;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.hid4java.HidDevice;
+import org.hid4java.HidManager;
+import org.hid4java.HidServices;
+import org.hid4java.HidServicesSpecification;
 
 /**
  *
@@ -39,7 +44,7 @@ public class EntradaGuitarra extends Observable implements Runnable{
     int largo =32;
     byte[] readData = new byte[largo];
     byte[] oldReadData = new byte[largo];
-    Device dev;
+    HidDevice dev;
 
     int string_E, string_A,string_D,string_G,string_B,string_e;
     int notaString_E = 40;
@@ -61,9 +66,21 @@ public class EntradaGuitarra extends Observable implements Runnable{
     boolean botonA=false;
     boolean botonB=false;
     
-    public EntradaGuitarra(GuitarProperties gp, GeneralProperties prop) throws USBException{
-        dev = USB.getDevice((short)7085, (short)13360);
-        dev.open(1, 0, -1);
+    public EntradaGuitarra(GuitarProperties gp, GeneralProperties prop) throws Exception{
+        
+        int vendorId = 7085;  // Reemplazar con el Vendor ID real
+        int productId = 13360; // Reemplazar con el Product ID real
+
+
+        // Crear instancia del servicio HID
+        HidServicesSpecification hidServicesSpecification = new HidServicesSpecification();
+        HidServices hidServices = HidManager.getHidServices(hidServicesSpecification);
+
+        System.out.println("Buscando dispositivos USB HID...");
+
+        // Buscar el dispositivo específico
+        dev = hidServices.getHidDevice(vendorId, productId, null);
+
 
         guitarProperties=gp;
         cuerda_E = new Cuerda(guitarProperties.getString_initial_value_lowE(), guitarProperties.getString_initial_channel_lowE(),prop.getPropertyAsInt("midi.port.String.lowE", guitarProperties.getString_initial_channel_lowE()),guitarProperties.getString_cc_selection_value_lowE(),guitarProperties.getString_key_selection_value_lowE());
@@ -291,12 +308,24 @@ public class EntradaGuitarra extends Observable implements Runnable{
     
     public void run() {
         while (true){
-            try {
-                dev.readInterrupt(0x81, readData, readData.length, 2000, false);
-                detectoCambio(readData, oldReadData);
-            } catch (USBException ex) {
-                Logger.getLogger(EntradaGuitarra.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                        // Leer datos con un tiempo de espera de 1 segundo (1000 ms)
+                        int bytesRead = dev.read(readData, 1000);
+
+                        if (bytesRead > 0) {
+                            // Comparar con la lectura anterior
+                            if (!Arrays.equals(oldReadData, readData)) {
+                                System.out.print("Nueva lectura de datos: ");
+                                for (int i = 0; i < bytesRead; i++) {
+                                    System.out.print( readData[i]+" ");
+                                }
+                                System.out.println();
+
+                                // Actualizar la lectura anterior
+                                System.arraycopy(readData, 0, oldReadData, 0, bytesRead);
+                            }
+                        } else {
+                            System.out.println("No se recibieron datos...");
+                        }
         }
     
     }
