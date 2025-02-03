@@ -51,7 +51,8 @@ Product ID (PID): 13360
                             if (!Arrays.equals(previousData, dataBuffer)) {
                                 System.out.print("Nueva lectura de datos: ");
                                 for (int i = 0; i < bytesRead; i++) {
-                                    System.out.print( dataBuffer[i]+" ");
+                                    if (dataBuffer[i] != previousData[i])
+                                    System.out.println( i+ " "+dataBuffer[i]+" ");
                                 }
                                 System.out.println();
 

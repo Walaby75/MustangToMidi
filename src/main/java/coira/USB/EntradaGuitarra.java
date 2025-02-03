@@ -6,7 +6,9 @@ package coira.USB;
 
 
 import coira.Midi.NotaMidi;
+import coira.guitarra.ControlCuerdas;
 import coira.guitarra.Cuerda;
+import coira.guitarra.DataCuerda;
 import coira.guitarra.ordenes.OrdenApagado;
 import coira.guitarra.ordenes.OrdenBajoFuerza;
 import coira.guitarra.ordenes.OrdenToStrings;
@@ -25,6 +27,8 @@ import coira.guitarra.ordenes.OrdenToNeck;
 import coira.properties.GeneralProperties;
 import coira.properties.GuitarProperties;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
@@ -54,12 +58,16 @@ public class EntradaGuitarra extends Observable implements Runnable{
     int notaString_B = 59;
     int notaString_e = 64;
     
+    ControlCuerdas controlCuerdas;
+    
+    /*
     Cuerda cuerda_E ;
     Cuerda cuerda_A ;
     Cuerda cuerda_D ;
     Cuerda cuerda_G ;
     Cuerda cuerda_B ;
     Cuerda cuerda_e ;
+    */
     
     boolean boton1=false;
     boolean boton2=false;
@@ -83,24 +91,7 @@ public class EntradaGuitarra extends Observable implements Runnable{
 
 
         guitarProperties=gp;
-        cuerda_E = new Cuerda(guitarProperties.getString_initial_value_lowE(), guitarProperties.getString_initial_channel_lowE(),prop.getPropertyAsInt("midi.port.String.lowE", guitarProperties.getString_initial_channel_lowE()),guitarProperties.getString_cc_selection_value_lowE(),guitarProperties.getString_key_selection_value_lowE());
-        cuerda_A = new Cuerda(guitarProperties.getString_initial_value_A(), guitarProperties.getString_initial_channel_A(),prop.getPropertyAsInt("midi.port.String.A", guitarProperties.getString_initial_channel_A()),guitarProperties.getString_cc_selection_value_A(),guitarProperties.getString_key_selection_value_A());
-        cuerda_D = new Cuerda(guitarProperties.getString_initial_value_D(), guitarProperties.getString_initial_channel_D(),prop.getPropertyAsInt("midi.port.String.D", guitarProperties.getString_initial_channel_D()),guitarProperties.getString_cc_selection_value_D(),guitarProperties.getString_key_selection_value_D());
-        cuerda_G = new Cuerda(guitarProperties.getString_initial_value_G(), guitarProperties.getString_initial_channel_G(),prop.getPropertyAsInt("midi.port.String.G", guitarProperties.getString_initial_channel_G()),guitarProperties.getString_cc_selection_value_G(),guitarProperties.getString_key_selection_value_G());
-        cuerda_B = new Cuerda(guitarProperties.getString_initial_value_B(), guitarProperties.getString_initial_channel_B(),prop.getPropertyAsInt("midi.port.String.B", guitarProperties.getString_initial_channel_B()),guitarProperties.getString_cc_selection_value_B(),guitarProperties.getString_key_selection_value_B());
-        cuerda_e = new Cuerda(guitarProperties.getString_initial_value_highE(), guitarProperties.getString_initial_channel_highE(),prop.getPropertyAsInt("midi.port.String.highE", guitarProperties.getString_initial_channel_highE()),guitarProperties.getString_cc_selection_value_highE(),guitarProperties.getString_key_selection_value_highE());
-        cuerda_E.setGuitarProperties(guitarProperties);
-        cuerda_A.setGuitarProperties(guitarProperties);
-        cuerda_D.setGuitarProperties(guitarProperties);
-        cuerda_G.setGuitarProperties(guitarProperties);
-        cuerda_B.setGuitarProperties(guitarProperties);
-        cuerda_e.setGuitarProperties(guitarProperties);
-        addObserver(cuerda_E);
-        addObserver(cuerda_A);
-        addObserver(cuerda_D);
-        addObserver(cuerda_G);
-        addObserver(cuerda_B);
-        addObserver(cuerda_e);
+        controlCuerdas = new ControlCuerdas(gp, prop);
     }
 
     
@@ -156,54 +147,22 @@ public class EntradaGuitarra extends Observable implements Runnable{
         if (cambio){
             System.out.println(string_E+" - "+string_A+" - "+string_D+" - "+string_G+" - "+string_B+" - "+string_e+" - ");
         }
+        Map<Integer,DataCuerda> cuerdas = new HashMap<Integer, DataCuerda>();
+        cuerdas.put(6,new DataCuerda(string_E, data[9]));
+        cuerdas.put(5,new DataCuerda(string_A, data[10]));
+        cuerdas.put(4,new DataCuerda(string_D, data[11]));
+        cuerdas.put(3,new DataCuerda(string_G, data[12]));
+        cuerdas.put(2,new DataCuerda(string_B, data[13]));
+        cuerdas.put(1,new DataCuerda(string_e, data[14]));
         
-      /*
-        for (int i=9;i<15;i++){
-
-            if (olddata[i]!=data[i]){
-                NotaMidi nota = notaPulsada(i, olddata[i], data[i]);
-                if (nota!=null){
-                    setChanged();
-                    notifyObservers(nota);
-                }
-
-            }
-            
-            olddata[i]=data[i];
-            
-        }
-        */
+        controlCuerdas.detectoCambio(cuerdas);
         
-        cuerda_E.interpretoEvento(string_E, data[9]);
-        cuerda_A.interpretoEvento(string_A, data[10]);
-        cuerda_D.interpretoEvento(string_D, data[11]);
-        cuerda_G.interpretoEvento(string_G, data[12]);
-        cuerda_B.interpretoEvento(string_B, data[13]);
-        cuerda_e.interpretoEvento(string_e, data[14]);
-
         
         interpretoByte1(data,olddata);
         interpretoByte0(data,olddata);
         interpretoByte2(data,olddata);
-        
-        /*
-        if (data[15]!=olddata[15]){
-            olddata[15]=data[15];
-            setChanged();
-            notifyObservers(new OrdenApagado());
-        }
-        */
-/*
-        for (int i = 15; i < 18; i++) {
-            if (data[i]!=olddata[i]){
-                System.out.println("En la posicion "+i+" antes = "+olddata[i]+" ahora = "+data[i]);
-                System.out.println("Detener");
-                olddata[i]=data[i];
-            }
-            
-        }
-  */      
     }
+
     public void interpretoByte1(byte[] data, byte[] olddata){
         if (data[1]!=olddata[1]){
             olddata[1]=data[1];
@@ -330,18 +289,7 @@ public class EntradaGuitarra extends Observable implements Runnable{
     
     }
     
-    @Override
-    public void addObserver(Observer o){
-        super.addObserver(o);
-        
-        cuerda_E.addObserver(o);
-        cuerda_A.addObserver(o);
-        cuerda_D.addObserver(o);
-        cuerda_G.addObserver(o);
-        cuerda_B.addObserver(o);
-        cuerda_e.addObserver(o);
-        
-    }
+
 
     public GuitarProperties getGuitarProperties() {
         return guitarProperties;
@@ -349,18 +297,6 @@ public class EntradaGuitarra extends Observable implements Runnable{
 
     public void setGuitarProperties(GuitarProperties guitarProperties) {
         this.guitarProperties = guitarProperties;
-        cuerda_E.setGuitarProperties(guitarProperties);
-        cuerda_E.setPrimerNota(guitarProperties.getString_initial_value_lowE());
-        cuerda_A.setGuitarProperties(guitarProperties);
-        cuerda_A.setPrimerNota(guitarProperties.getString_initial_value_A());
-        cuerda_D.setGuitarProperties(guitarProperties);
-        cuerda_D.setPrimerNota(guitarProperties.getString_initial_value_D());
-        cuerda_G.setGuitarProperties(guitarProperties);
-        cuerda_G.setPrimerNota(guitarProperties.getString_initial_value_G());
-        cuerda_B.setGuitarProperties(guitarProperties);
-        cuerda_B.setPrimerNota(guitarProperties.getString_initial_value_B());
-        cuerda_e.setGuitarProperties(guitarProperties);
-        cuerda_e.setPrimerNota(guitarProperties.getString_initial_value_highE());
     }
     
     
