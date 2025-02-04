@@ -74,8 +74,8 @@ public class EntradaGuitarra extends Observable implements Runnable{
     boolean botonA=false;
     boolean botonB=false;
     
-    public EntradaGuitarra(GuitarProperties gp, GeneralProperties prop) throws Exception{
-        
+
+    public EntradaGuitarra(GuitarProperties gp, GeneralProperties prop){
         int vendorId = 7085;  // Reemplazar con el Vendor ID real
         int productId = 13360; // Reemplazar con el Product ID real
 
@@ -83,13 +83,9 @@ public class EntradaGuitarra extends Observable implements Runnable{
         // Crear instancia del servicio HID
         HidServicesSpecification hidServicesSpecification = new HidServicesSpecification();
         HidServices hidServices = HidManager.getHidServices(hidServicesSpecification);
-
-        System.out.println("Buscando dispositivos USB HID...");
-
-        // Buscar el dispositivo específico
+        
         dev = hidServices.getHidDevice(vendorId, productId, null);
-
-
+        
         guitarProperties=gp;
         controlCuerdas = new ControlCuerdas(gp, prop);
     }
@@ -266,27 +262,20 @@ public class EntradaGuitarra extends Observable implements Runnable{
     }
     
     public void run() {
+            try {
+        
         while (true){
-                        // Leer datos con un tiempo de espera de 1 segundo (1000 ms)
-                        int bytesRead = dev.read(readData, 1000);
-
-                        if (bytesRead > 0) {
-                            // Comparar con la lectura anterior
-                            if (!Arrays.equals(oldReadData, readData)) {
-                                System.out.print("Nueva lectura de datos: ");
-                                for (int i = 0; i < bytesRead; i++) {
-                                    System.out.print( readData[i]+" ");
-                                }
-                                System.out.println();
-
-                                // Actualizar la lectura anterior
-                                System.arraycopy(readData, 0, oldReadData, 0, bytesRead);
-                            }
-                        } else {
-                            System.out.println("No se recibieron datos...");
-                        }
+                int bytesRead = dev.read(readData, 1000);
+                detectoCambio(readData, oldReadData);
+ 
         }
-    
+            } catch (Exception e) {
+                  e.printStackTrace();
+            } finally {
+                    // Cerrar el dispositivo al finalizar
+                    dev.close();
+                    System.out.println("Dispositivo cerrado.");
+            }
     }
     
 
@@ -299,5 +288,5 @@ public class EntradaGuitarra extends Observable implements Runnable{
         this.guitarProperties = guitarProperties;
     }
     
-    
+
 }
