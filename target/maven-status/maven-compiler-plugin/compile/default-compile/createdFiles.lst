@@ -12,6 +12,7 @@ coira\guitarra\ordenes\OrdenReseteoFuerza.class
 coira\gui\GuitarToMidi$3.class
 coira\guitarra\ordenes\OrdenBendDown.class
 coira\guitarra\ordenes\OrdenApagadoCuerdaDelay.class
+coira\guitarra\DataCuerda.class
 coira\guitarra\ordenes\OrdenSuboFuerza.class
 coira\Midi\NotaMidi.class
 coira\guitarra\ordenes\OrdenBajoFuerza.class
@@ -63,11 +64,14 @@ coira\guitarra\ordenes\OrdenBotonMasMenos.class
 coira\Midi\SalidaMidi$3.class
 coira\guitarra\eventos\EventoBend.class
 com\coira\guitartomidi\USBHIDReader.class
+coira\guitarra\ControlCuerdas.class
 coira\guitarra\eventos\Evento.class
 coira\Midi\SalidaMidi$6.class
 coira\guitarra\ordenes\OrdenBoton2.class
+coira\util\Util.class
 coira\guitarra\ordenes\OrdenBotonB.class
 coira\gui\GuitarToMidi$2.class
+coira\gui\GuitarToMidi$5.class
 coira\gui\GuitarToMidi.class
 coira\Pruebas\MainConsola.class
 coira\guitarra\ordenes\EnumeradoOrdenes.class

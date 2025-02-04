@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-=======
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\gui\GuitarToMidi.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ControlCuerdas.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\Cuerda.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\DataCuerda.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\eventos\Evento.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\eventos\EventoBend.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\eventos\EventoCuerdaPulsada.java
@@ -59,7 +59,7 @@ C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\properties\GuitarProperties.jav
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\properties\MyProperties.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Pruebas\MainConsola.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\USB\EntradaGuitarra.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\util\Util.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\com\coira\guitartomidi\ListUsbDevices.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\com\coira\guitartomidi\USBHIDReader.java
->>>>>>> temp-branch
 C:\GuitarToMidi\GuitarToMidi\src\main\java\com\coira\guitartomidi\USBReader.java
