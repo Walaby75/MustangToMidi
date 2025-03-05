@@ -7,7 +7,6 @@ package coira.USB;
 
 import coira.Midi.NotaMidi;
 import coira.guitarra.ControlCuerdas;
-import coira.guitarra.Cuerda;
 import coira.guitarra.DataCuerda;
 import coira.guitarra.ordenes.OrdenApagado;
 import coira.guitarra.ordenes.OrdenBajoFuerza;
@@ -30,9 +29,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hid4java.HidDevice;
 import org.hid4java.HidManager;
 import org.hid4java.HidServices;
@@ -59,15 +55,6 @@ public class EntradaGuitarra extends Observable implements Runnable{
     int notaString_e = 64;
     
     ControlCuerdas controlCuerdas;
-    
-    /*
-    Cuerda cuerda_E ;
-    Cuerda cuerda_A ;
-    Cuerda cuerda_D ;
-    Cuerda cuerda_G ;
-    Cuerda cuerda_B ;
-    Cuerda cuerda_e ;
-    */
     
     boolean boton1=false;
     boolean boton2=false;
@@ -162,40 +149,44 @@ public class EntradaGuitarra extends Observable implements Runnable{
     public void interpretoByte1(byte[] data, byte[] olddata){
         if (data[1]!=olddata[1]){
             olddata[1]=data[1];
-            if (data[1]==16){
-                // enmudece todo
-                setChanged();
-                notifyObservers(new OrdenApagado());
-            }else if (data[1]==1){
-                // baja un semitono
-                setChanged();
-                notifyObservers(new OrdenBajoFuerza());
-
-            } else if (data[1]==17){
-                //sube un semitono 17
-                setChanged();
-                notifyObservers(new OrdenBotonMenos());
-
-            } else if (data[1]==18){
-                //vuelve tono al inicio 18
-                setChanged();
-                notifyObservers(new OrdenBotonMas());
-                
-            } else if (data[1]==3){
-                //sube fuerzas topes 3
-                setChanged();
-                notifyObservers(new OrdenBotonMasMenos());
-
-            }else if (data[1]==2){
-                //baja fuerzas tope 2
-                setChanged();
-                notifyObservers(new OrdenSuboFuerza());
-                
-            } else if (data[1]==19){
-                //vuelve fuerzas al origen
-                setChanged();
-                notifyObservers(new OrdenReseteoFuerza());
-
+            switch (data[1]) {
+                case 16 -> {
+                    // enmudece todo
+                    setChanged();
+                    notifyObservers(new OrdenApagado());
+                }
+                case 1 -> {
+                    // baja un semitono
+                    setChanged();
+                    notifyObservers(new OrdenBajoFuerza());
+                }
+                case 17 -> {
+                    //sube un semitono 17
+                    setChanged();
+                    notifyObservers(new OrdenBotonMenos());
+                }
+                case 18 -> {
+                    //vuelve tono al inicio 18
+                    setChanged();
+                    notifyObservers(new OrdenBotonMas());
+                }
+                case 3 -> {
+                    //sube fuerzas topes 3
+                    setChanged();
+                    notifyObservers(new OrdenBotonMasMenos());
+                }
+                case 2 -> {
+                    //baja fuerzas tope 2
+                    setChanged();
+                    notifyObservers(new OrdenSuboFuerza());
+                }
+                case 19 -> {
+                    //vuelve fuerzas al origen
+                    setChanged();
+                    notifyObservers(new OrdenReseteoFuerza());
+                }
+                default -> {
+                }
             }
             
         }

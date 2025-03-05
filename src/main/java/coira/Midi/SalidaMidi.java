@@ -10,7 +10,6 @@ import coira.guitarra.ordenes.OrdenApagadoCuerda;
 import coira.guitarra.ordenes.OrdenApagadoCuerdaDelay;
 import coira.guitarra.ordenes.OrdenBendOff;
 import coira.guitarra.ordenes.OrdenBendUp;
-import coira.guitarra.ordenes.OrdenBoton1;
 import coira.guitarra.ordenes.OrdenCambioCuerda;
 import coira.guitarra.ordenes.OrdenHammerOn;
 import coira.guitarra.ordenes.OrdenPullOff;
@@ -25,12 +24,8 @@ import coira.properties.GeneralProperties;
 import coira.properties.GuitarProperties;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.midi.InvalidMidiDataException;
@@ -38,7 +33,6 @@ import javax.sound.midi.MidiDevice;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.ShortMessage;
-import javax.sql.rowset.serial.SerialArray;
 
 
 /**
@@ -73,9 +67,6 @@ public class SalidaMidi implements  Observer{
     public void setSlideBool(boolean slideBool) {
         this.slideBool = slideBool;
     }
-    
-    
-    
     
     private HashMap<String,MidiDevice> devices = new HashMap<String,MidiDevice>();
     public SalidaMidi(GuitarProperties gp, GeneralProperties prop ) throws MidiUnavailableException {
@@ -173,8 +164,6 @@ public class SalidaMidi implements  Observer{
         }
 
     }
-
-    
     
     public void slideDown(int disp, int canal,int variacion){
             try {
@@ -257,7 +246,6 @@ public class SalidaMidi implements  Observer{
         }
         
     }
-
     
     public void start_Slide (int disp,int canal){
         try {
@@ -276,11 +264,6 @@ public class SalidaMidi implements  Observer{
         }
         
     }
-
-    
-    
-
-
         
     public void slideP (int disp,int canal, int nota){
         try {
@@ -389,10 +372,6 @@ public class SalidaMidi implements  Observer{
         }
         
     }
-    
-    
-
-        
 
     public void hammerOn (final int disp,final int canal, final int nota, int variacion){
         try {
@@ -459,7 +438,6 @@ miThread.start();
         }
         
     }
-        
         
     public void pullOff (final int disp,final int canal, final int nota, int variacion){
         try {
@@ -686,8 +664,6 @@ miThread.start();
         }
     }
 
-    
-    
     public void enviarNota(final int disp,final int canal,final int nota, final int fuerza, boolean bending,int cc,  int key_string){
         final ShortMessage myMsg = new ShortMessage();
         try {
@@ -792,7 +768,6 @@ miThread.start();*/
         }
         
     }
-    
 
     public void cortarNotaDelay(int disp,int canal,int nota, int fuerza, Date pulsada){
         final int disp1 = disp;

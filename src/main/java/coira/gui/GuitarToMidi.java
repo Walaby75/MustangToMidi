@@ -5,6 +5,8 @@
  */
 package coira.gui;
 
+import configuraciones.cuerdas.CFGCuerdas;
+import configuraciones.salida.CFGSalidas;
 import java.io.File;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -18,7 +20,7 @@ public class GuitarToMidi extends javax.swing.JFrame {
     
     
     private void cargarArchivos(String subCarpeta, JComboBox combo) {
-    File carpeta = new File("conf/"+subCarpeta); // Carpeta donde están los archivos
+    File carpeta = new File("./conf/"+subCarpeta); // Carpeta donde están los archivos
 
     if (carpeta.exists() && carpeta.isDirectory()) {
         File[] archivos = carpeta.listFiles(); // Obtener archivos
@@ -190,6 +192,10 @@ public class GuitarToMidi extends javax.swing.JFrame {
     System.out.println("Cuerdas seleccionadas: " + cuerdasSeleccionadas);
     System.out.println("VST seleccionado: " + vstSeleccionado);
         // TODO add your handling code here:
+    if (cuerdasSeleccionadas != null && !cuerdasSeleccionadas.equals(""))
+        CFGCuerdas.getInstance().configurar(cuerdasSeleccionadas);
+    if (salidaSeleccionada != null && !salidaSeleccionada.equals(""))
+        CFGSalidas.getInstance().configurar(salidaSeleccionada);
     }//GEN-LAST:event_btnCargarActionPerformed
 
     /**
