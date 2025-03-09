@@ -7,6 +7,8 @@ package coira.guitarra;
 
 import coira.properties.GeneralProperties;
 import coira.properties.GuitarProperties;
+import configuraciones.cuerdas.CFGCuerdas;
+import configuraciones.salida.CFGSalidas;
 import java.util.Map;
 
 /**
@@ -94,6 +96,7 @@ public class ControlCuerdas  {
         cuerda_1.setPrimerNota(guitarProperties.getString_initial_value_highE());
     }
 
+    /*
     public ControlCuerdas(GuitarProperties gp, GeneralProperties prop) {
     
         guitarProperties = gp;
@@ -110,14 +113,14 @@ public class ControlCuerdas  {
         cuerda_3.setGuitarProperties(guitarProperties);
         cuerda_2.setGuitarProperties(guitarProperties);
         cuerda_1.setGuitarProperties(guitarProperties);
-    /*    addObserver(cuerda_6);
+        addObserver(cuerda_6);
         addObserver(cuerda_5);
         addObserver(cuerda_4);
         addObserver(cuerda_3);
         addObserver(cuerda_2);
         addObserver(cuerda_1);
-    */
-    }
+    
+    }*/
     
     public void detectoCambio(Map<Integer,DataCuerda> cuerdas ){
         
@@ -144,6 +147,14 @@ public class ControlCuerdas  {
     }*/
     
     
-    
+    public ControlCuerdas(){
+        cuerda_6 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(6).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(6).getCanal(),CFGSalidas.getInstance().getSalidas().get(6).getPuerto());
+        cuerda_5 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(5).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(5).getCanal(),CFGSalidas.getInstance().getSalidas().get(5).getPuerto());
+        cuerda_4 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(4).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(4).getCanal(),CFGSalidas.getInstance().getSalidas().get(4).getPuerto());
+        cuerda_3 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(3).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(3).getCanal(),CFGSalidas.getInstance().getSalidas().get(3).getPuerto());
+        cuerda_2 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(2).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(2).getCanal(),CFGSalidas.getInstance().getSalidas().get(2).getPuerto());
+        cuerda_1 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(1).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(1).getCanal(),CFGSalidas.getInstance().getSalidas().get(1).getPuerto());
+        
+    }
     
 }

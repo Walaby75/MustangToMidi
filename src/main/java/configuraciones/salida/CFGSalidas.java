@@ -48,7 +48,7 @@ public class CFGSalidas {
             boolean defecto = propiedades.getProperty("midi.ports").equalsIgnoreCase("default");
             int cuerda=1;
             salidas = new HashMap<>();
-            while (propiedades.getProperty("Cuerda"+cuerda)!=null){
+            while (propiedades.getProperty("midi.chanel.String."+cuerda)!=null){
                 
                 Integer chanel = Integer.parseInt(propiedades.getProperty("midi.chanel.String."+cuerda));
                 String asignado = propiedades.getProperty("midi.port.String."+cuerda);

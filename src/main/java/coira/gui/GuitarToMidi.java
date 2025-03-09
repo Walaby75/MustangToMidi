@@ -5,6 +5,7 @@
  */
 package coira.gui;
 
+import coira.entrada.GuitarraMustangEntrada;
 import configuraciones.cuerdas.CFGCuerdas;
 import configuraciones.salida.CFGSalidas;
 import java.io.File;
@@ -172,6 +173,8 @@ public class GuitarToMidi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDetenerActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        GuitarraMustangEntrada entrada = new GuitarraMustangEntrada();
+        entrada.run();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIniciarActionPerformed
 

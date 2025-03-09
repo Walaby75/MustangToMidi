@@ -2,33 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package coira.USB;
+package coira.entrada;
 
 
-import coira.Midi.NotaMidi;
 import coira.guitarra.ControlCuerdas;
 import coira.guitarra.DataCuerda;
-import coira.guitarra.ordenes.OrdenApagado;
-import coira.guitarra.ordenes.OrdenBajoFuerza;
-import coira.guitarra.ordenes.OrdenToStrings;
-import coira.guitarra.ordenes.OrdenBoton1;
-import coira.guitarra.ordenes.OrdenBoton2;
-import coira.guitarra.ordenes.OrdenBotonA;
-import coira.guitarra.ordenes.OrdenBotonB;
-import coira.guitarra.ordenes.OrdenBotonMas;
-import coira.guitarra.ordenes.OrdenBotonMasMenos;
-import coira.guitarra.ordenes.OrdenBotonMenos;
-import coira.guitarra.ordenes.OrdenMovePadOff;
-import coira.guitarra.ordenes.OrdenReseteoFuerza;
-import coira.guitarra.ordenes.OrdenSuboFuerza;
-import coira.guitarra.ordenes.OrdenSwitchOnOffSlide;
-import coira.guitarra.ordenes.OrdenToNeck;
 import coira.properties.GeneralProperties;
 import coira.properties.GuitarProperties;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Observable;
 import org.hid4java.HidDevice;
 import org.hid4java.HidManager;
 import org.hid4java.HidServices;
@@ -38,21 +20,16 @@ import org.hid4java.HidServicesSpecification;
  *
  * @author Administrador
  */
-public class EntradaGuitarra extends Observable implements Runnable{
+public class GuitarraMustangEntrada{
     
-    GuitarProperties guitarProperties;
+
     int largo =32;
     byte[] readData = new byte[largo];
     byte[] oldReadData = new byte[largo];
     HidDevice dev;
 
     int string_E, string_A,string_D,string_G,string_B,string_e;
-    int notaString_E = 40;
-    int notaString_A = 45;
-    int notaString_D = 50;
-    int notaString_G = 55;
-    int notaString_B = 59;
-    int notaString_e = 64;
+
     
     ControlCuerdas controlCuerdas;
     
@@ -62,7 +39,7 @@ public class EntradaGuitarra extends Observable implements Runnable{
     boolean botonB=false;
     
 
-    public EntradaGuitarra(GuitarProperties gp, GeneralProperties prop){
+    public GuitarraMustangEntrada(){
         int vendorId = 7085;  // Reemplazar con el Vendor ID real
         int productId = 13360; // Reemplazar con el Product ID real
 
@@ -73,33 +50,10 @@ public class EntradaGuitarra extends Observable implements Runnable{
         
         dev = hidServices.getHidDevice(vendorId, productId, null);
         
-        guitarProperties=gp;
         controlCuerdas = new ControlCuerdas();
     }
 
     
-    public NotaMidi notaPulsada(int disp,int cuerda,int viejo,int nuevo){
-        cuerda=cuerda-8;
-        NotaMidi nota=null;
-        boolean pulsado = Math.abs(nuevo-viejo)!=128;
-        if (pulsado){
-            int valorFuerza = nuevo>80?nuevo:80;
-            if (cuerda==1){
-                nota=new NotaMidi(disp,string_E+notaString_E, cuerda,guitarProperties.getString_strength_min(),guitarProperties.getString_strength_max() );
-            }else if (cuerda==2){
-                nota=new NotaMidi(disp,string_A+notaString_A, cuerda, guitarProperties.getString_strength_min(),guitarProperties.getString_strength_max());
-            }else if (cuerda==3){
-                nota=new NotaMidi(disp,string_D+notaString_D, cuerda, guitarProperties.getString_strength_min(),guitarProperties.getString_strength_max());
-            }else if (cuerda==4){
-                nota=new NotaMidi(disp,string_G+notaString_G, cuerda, guitarProperties.getString_strength_min(),guitarProperties.getString_strength_max());
-            }else if (cuerda==5){
-                nota=new NotaMidi(disp,string_B+notaString_B, cuerda, guitarProperties.getString_strength_min(),guitarProperties.getString_strength_max());
-            }else if (cuerda==6){
-                nota=new NotaMidi(disp,string_e+notaString_e, cuerda, guitarProperties.getString_strength_min(),guitarProperties.getString_strength_max());
-            }
-        }
-        return nota;
-    }
     
     
     private void detectoCambio(byte[] data, byte[] olddata){
@@ -130,7 +84,7 @@ public class EntradaGuitarra extends Observable implements Runnable{
         if (cambio){
             System.out.println(string_E+" - "+string_A+" - "+string_D+" - "+string_G+" - "+string_B+" - "+string_e+" - ");
         }
-        Map<Integer,DataCuerda> cuerdas = new HashMap<Integer, DataCuerda>();
+        Map<Integer,DataCuerda> cuerdas = new HashMap<>();
         cuerdas.put(6,new DataCuerda(string_E, data[9]));
         cuerdas.put(5,new DataCuerda(string_A, data[10]));
         cuerdas.put(4,new DataCuerda(string_D, data[11]));
@@ -148,42 +102,30 @@ public class EntradaGuitarra extends Observable implements Runnable{
 
     public void interpretoByte1(byte[] data, byte[] olddata){
         if (data[1]!=olddata[1]){
+            System.out.println("Byte1 "+data[1] );
             olddata[1]=data[1];
             switch (data[1]) {
                 case 16 -> {
                     // enmudece todo
-                    setChanged();
-                    notifyObservers(new OrdenApagado());
+
                 }
                 case 1 -> {
                     // baja un semitono
-                    setChanged();
-                    notifyObservers(new OrdenBajoFuerza());
                 }
                 case 17 -> {
                     //sube un semitono 17
-                    setChanged();
-                    notifyObservers(new OrdenBotonMenos());
                 }
                 case 18 -> {
                     //vuelve tono al inicio 18
-                    setChanged();
-                    notifyObservers(new OrdenBotonMas());
                 }
                 case 3 -> {
                     //sube fuerzas topes 3
-                    setChanged();
-                    notifyObservers(new OrdenBotonMasMenos());
                 }
                 case 2 -> {
                     //baja fuerzas tope 2
-                    setChanged();
-                    notifyObservers(new OrdenSuboFuerza());
                 }
                 case 19 -> {
                     //vuelve fuerzas al origen
-                    setChanged();
-                    notifyObservers(new OrdenReseteoFuerza());
                 }
                 default -> {
                 }
@@ -209,23 +151,13 @@ public class EntradaGuitarra extends Observable implements Runnable{
             auxValor-=auxRes;
             boton2=auxValor==8;
             if (boton1){
-                setChanged();
-                notifyObservers(new OrdenBoton1());
             }
             if (boton2){
-                setChanged();
-                notifyObservers(new OrdenBoton2());
-                            setChanged();
-            notifyObservers(new OrdenSwitchOnOffSlide());
 
             }
             if (botonA){
-                setChanged();
-                notifyObservers(new OrdenBotonA());
             }
             if (botonB){
-                setChanged();
-                notifyObservers(new OrdenBotonB());
             }
 
         }
@@ -234,19 +166,25 @@ public class EntradaGuitarra extends Observable implements Runnable{
     }
     
     public void interpretoByte2(byte[] data, byte[] olddata){
+        //pad
         if (data[2]!=olddata[2]){
+            System.out.println("Byte2 "+data[2] );
             if (data[2]==4){
-                setChanged();
-                notifyObservers(new OrdenToStrings());
+                //hacia las cuerdas
             }
             if (data[2]==8){
-                setChanged();
-                notifyObservers(new OrdenMovePadOff());
+               //pad off 
             }
             if (data[2]==6){
-                setChanged();
-                notifyObservers(new OrdenToNeck());
+                // hacia el cuello
             }
+            if (data[2]==0){
+                // aleja las cuerdas
+            }
+            if (data[2]==2){
+                // aleja del cuello
+            }
+
             
         }
         olddata[2]=data[2];
@@ -255,11 +193,11 @@ public class EntradaGuitarra extends Observable implements Runnable{
     public void run() {
             try {
         
-        while (true){
-                int bytesRead = dev.read(readData, 1000);
-                detectoCambio(readData, oldReadData);
- 
-        }
+                while (true){
+                        int bytesRead = dev.read(readData, 1000);
+                        detectoCambio(readData, oldReadData);
+
+                }
             } catch (Exception e) {
                   e.printStackTrace();
             } finally {
@@ -271,13 +209,6 @@ public class EntradaGuitarra extends Observable implements Runnable{
     
 
 
-    public GuitarProperties getGuitarProperties() {
-        return guitarProperties;
-    }
-
-    public void setGuitarProperties(GuitarProperties guitarProperties) {
-        this.guitarProperties = guitarProperties;
-    }
     
 
 }

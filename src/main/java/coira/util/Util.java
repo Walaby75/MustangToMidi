@@ -38,7 +38,14 @@ public class Util {
 
     // Función para convertir una nota a valor MIDI (soporta todo el rango MIDI de 0 a 127)
     public static int noteToMidi(String note) {
-        // Convierte la nota a mayúsculas para hacerla insensible a mayúsculas/minúsculas
+        int nota;
+        try {
+            nota = Integer.parseInt(note);
+            return nota;
+        } catch (Exception e) {
+        }
+
+// Convierte la nota a mayúsculas para hacerla insensible a mayúsculas/minúsculas
         note = note.toUpperCase();
 
         // Verifica si el formato de la nota es correcto

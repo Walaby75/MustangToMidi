@@ -45,7 +45,7 @@ public class CFGCuerdas {
             int cuerda=1;
             cuerdas = new HashMap<>();
             while (propiedades.getProperty("Cuerda"+cuerda)!=null){
-                cuerdas.put(cuerda, new DataCFGCuerda(Util.noteToMidi(propiedades.getProperty("Cuerda"+cuerda))));
+                cuerdas.put(cuerda, new DataCFGCuerda(Util.noteToMidi(propiedades.getProperty("Cuerda"+cuerda).trim())));
                 cuerda=cuerda+1;
             }
         } catch (IOException e) {

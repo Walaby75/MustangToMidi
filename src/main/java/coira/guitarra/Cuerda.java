@@ -68,6 +68,7 @@ public class Cuerda extends Observable implements Observer{
     private int key_string;
     private int tiempoToSlide = 1000;
     private boolean correspondeLegato = false;
+    private String puerto;
     public Cuerda() {
     }
 
@@ -81,6 +82,12 @@ public class Cuerda extends Observable implements Observer{
 
 
     
+    public Cuerda(int primerNota, int canal, String puerto){
+        this.primerNota=primerNota;
+        this.canal=canal;
+        this.puerto=puerto;
+        
+    }
     
     
     public int getPrimerNota() {
@@ -132,6 +139,14 @@ public class Cuerda extends Observable implements Observer{
 
     public void setMomentoPulsada(Date momentoPulsada) {
         this.momentoPulsada = momentoPulsada;
+    }
+
+    public String getPuerto() {
+        return puerto;
+    }
+
+    public void setPuerto(String puerto) {
+        this.puerto = puerto;
     }
 
 
@@ -196,6 +211,7 @@ public class Cuerda extends Observable implements Observer{
         offSetFuerzaMin=0;
         
     }
+
     public void reseteoTonoInicial(){
         offset=0;
     }
@@ -226,7 +242,7 @@ public class Cuerda extends Observable implements Observer{
                 System.out.println("fuerza " +aux);
                 setChanged();
                 setChanged();
-                notifyObservers(new OrdenPulsada(new NotaMidi(dispositivo,traste+primerNota+offset, canal, cuerda,guitarProperties.getString_strength_min()+offSetFuerzaMin,guitarProperties.getString_strength_max()+offSetFuerzaMax),cc,key_string));
+//                notifyObservers(new OrdenPulsada(new NotaMidi(dispositivo,traste+primerNota+offset, canal, cuerda,guitarProperties.getString_strength_min()+offSetFuerzaMin,guitarProperties.getString_strength_max()+offSetFuerzaMax),cc,key_string));
                 
                 if (traste>0 && aux>guitarProperties.getString_bend_strength()){
                     bend=true;
@@ -245,7 +261,7 @@ public class Cuerda extends Observable implements Observer{
         }else if (variacion.getVariacion()!=0){
             
             
-Thread miThread = new Thread(){
+    Thread miThread = new Thread(){
     public void run() {
         correspondeLegato=variacion.getVariacion()!=0;
         System.out.println("Corresponde Legato esperando "+correspondeLegato);
