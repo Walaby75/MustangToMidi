@@ -1,3 +1,4 @@
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\entrada\GuitarraMustangEntrada.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\gui\GuitarToMidi.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ControlCuerdas.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\Cuerda.java
@@ -58,8 +59,14 @@ C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\properties\GeneralProperties.ja
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\properties\GuitarProperties.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\properties\MyProperties.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Pruebas\MainConsola.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\salida\GuitarraMustangSalida.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\USB\EntradaGuitarra.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\util\Util.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\com\coira\guitartomidi\ListUsbDevices.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\com\coira\guitartomidi\USBHIDReader.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\com\coira\guitartomidi\USBReader.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\configuraciones\cuerdas\CFGCuerdas.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\configuraciones\cuerdas\DataCFGCuerda.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\configuraciones\salida\CFGSalidas.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\configuraciones\salida\DataCFGSalida.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\vst.java
