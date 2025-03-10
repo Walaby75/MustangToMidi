@@ -16,7 +16,7 @@ private int variacion;
 private int canal;
 private boolean sigue;
 private int nota;
-private int disp;
+private String disp;
 
     public int getVariacion() {
         return variacion;
@@ -50,18 +50,18 @@ private int disp;
         this.nota = nota;
     }
 
-    public int getDisp() {
+    public String getDisp() {
         return disp;
     }
 
-    public void setDisp(int disp) {
+    public void setDisp(String disp) {
         this.disp = disp;
     }
     
     
     
 
-    public OrdenSlideDown(int disp,int variacion, int canal, boolean sigue, int nota) {
+    public OrdenSlideDown(String disp,int variacion, int canal, boolean sigue, int nota) {
         this.disp = disp;
         this.variacion = variacion;
         this.canal = canal;

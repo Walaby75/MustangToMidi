@@ -174,7 +174,13 @@ public class GuitarToMidi extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         GuitarraMustangEntrada entrada = new GuitarraMustangEntrada();
-        entrada.run();
+        Thread miThread =  new Thread(){
+            public void run() {
+                entrada.run();
+            }
+        };
+        miThread.start();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIniciarActionPerformed
 

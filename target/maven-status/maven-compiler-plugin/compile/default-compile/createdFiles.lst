@@ -30,6 +30,7 @@ coira\Midi\SalidaMidi$4.class
 coira\guitarra\eventos\EventoSlide.class
 coira\guitarra\ordenes\OrdenBendUp.class
 coira\guitarra\eventos\EventoTrasteCuerda.class
+coira\gui\GuitarToMidi$6.class
 coira\guitarra\ordenes\OrdenSlideDown.class
 coira\entrada\GuitarraMustangEntrada.class
 coira\guitarra\eventos\EventoHandMute.class

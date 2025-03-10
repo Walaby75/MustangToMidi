@@ -10,7 +10,7 @@ package coira.guitarra.ordenes;
  */
 public class OrdenBendOff extends OrdenGuitarra{
     private int tones = 0;
-    private int disp = 0;
+    private String disp = null;
 
 
     public int getTones() {
@@ -21,11 +21,11 @@ public class OrdenBendOff extends OrdenGuitarra{
         this.tones = tones;
     }
 
-    public int getDisp() {
+    public String getDisp() {
         return disp;
     }
 
-    public void setDisp(int disp) {
+    public void setDisp(String disp) {
         this.disp = disp;
     }
 
@@ -34,7 +34,7 @@ public class OrdenBendOff extends OrdenGuitarra{
     public OrdenBendOff() {
     }
 
-    public OrdenBendOff(  int disp, int tones) {
+    public OrdenBendOff(  String disp, int tones) {
         this.tones = tones;
         this.disp = disp;
     }

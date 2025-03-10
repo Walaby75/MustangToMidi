@@ -32,10 +32,9 @@ import coira.guitarra.ordenes.OrdenSwitchOnOffSlide;
 import coira.guitarra.ordenes.OrdenToNeck;
 import coira.guitarra.ordenes.OrdenToStrings;
 import coira.properties.GuitarProperties;
+import coira.salida.GuitarraMustangSalida;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,10 +42,10 @@ import java.util.logging.Logger;
  *
  * @author Administrador
  */
-public class Cuerda extends Observable implements Observer{
+public class Cuerda {
     private int primerNota = -10;
     private int canal = -10;
-    private int dispositivo = -10;
+    private String dispositivo = null;
     private int offset =0;
     private int bendingTones;
     private boolean pulsada = false;
@@ -72,7 +71,7 @@ public class Cuerda extends Observable implements Observer{
     public Cuerda() {
     }
 
-    public Cuerda(int primerNota, int canal, int dispositivo,int cc, int key_string) {
+    public Cuerda(int primerNota, int canal, String dispositivo,int cc, int key_string) {
         this.primerNota=primerNota;
         this.canal=canal;
         this.dispositivo=dispositivo;
@@ -102,11 +101,11 @@ public class Cuerda extends Observable implements Observer{
         return pulsada;
     }
 
-    public int getDispositivo() {
+    public String getDispositivo() {
         return dispositivo;
     }
 
-    public void setDispositivo(int dispositivo) {
+    public void setDispositivo(String dispositivo) {
         this.dispositivo = dispositivo;
     }
 
@@ -223,8 +222,8 @@ public class Cuerda extends Observable implements Observer{
             System.out.println("var "+variacion);
         }
         if (ultimoTrastePresionado!=traste){
-            setChanged();
-            notifyObservers(new EventoTrasteCuerda(traste, this.getCanal()));
+            
+            GuitarraMustangSalida.getInstance().ejecutar(new EventoTrasteCuerda(traste, this.getCanal()));
         }
 
         
@@ -240,9 +239,9 @@ public class Cuerda extends Observable implements Observer{
                 System.out.println("Corresponde Legato pulsada "+correspondeLegato);
                 int aux =cuerda<0?cuerda+128:cuerda;
                 System.out.println("fuerza " +aux);
-                setChanged();
-                setChanged();
-//                notifyObservers(new OrdenPulsada(new NotaMidi(dispositivo,traste+primerNota+offset, canal, cuerda,guitarProperties.getString_strength_min()+offSetFuerzaMin,guitarProperties.getString_strength_max()+offSetFuerzaMax),cc,key_string));
+                
+                
+//                GuitarraMustangSalida.getInstance().ejecutar(new OrdenPulsada(new NotaMidi(dispositivo,traste+primerNota+offset, canal, cuerda,guitarProperties.getString_strength_min()+offSetFuerzaMin,guitarProperties.getString_strength_max()+offSetFuerzaMax),cc,key_string));
                 
                 if (traste>0 && aux>guitarProperties.getString_bend_strength()){
                     bend=true;
@@ -273,21 +272,21 @@ public class Cuerda extends Observable implements Observer{
         System.out.println("Corresponde Legato luego de esperar "+correspondeLegato);
         if (correspondeLegato){
             if (variacion.getVariacion() < 0 && !variacion.isSlide()){
-                setChanged();
-                notifyObservers(new OrdenPullOff(dispositivo,variacion.getVariacion(),canal,false,traste+primerNota+offset));
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenPullOff(dispositivo,variacion.getVariacion(),canal,false,traste+primerNota+offset));
             }else if (variacion.getVariacion() > 0 && !variacion.isSlide()){
-                setChanged();
-                notifyObservers(new OrdenHammerOn(dispositivo,variacion.getVariacion(),canal,false,traste+primerNota+offset));
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenHammerOn(dispositivo,variacion.getVariacion(),canal,false,traste+primerNota+offset));
             }else if (variacion.getVariacion() < 0  && variacion.isSlide()){
-                setChanged();
-                notifyObservers(new OrdenSlideDown(dispositivo,variacion.getVariacion(),canal,false,traste+primerNota+offset));
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenSlideDown(dispositivo,variacion.getVariacion(),canal,false,traste+primerNota+offset));
             }else if (variacion.getVariacion() > 0 && variacion.isSlide()){
-                setChanged();
-                notifyObservers(new OrdenSlideUp(dispositivo,variacion.getVariacion(),canal,false,traste+primerNota+offset));
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenSlideUp(dispositivo,variacion.getVariacion(),canal,false,traste+primerNota+offset));
 
             }else if (variacion.getVariacion() == -10){
-                    setChanged();
-                notifyObservers(new OrdenStopSlide(dispositivo,0,canal,false,traste+primerNota+offset));
+                    
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenStopSlide(dispositivo,0,canal,false,traste+primerNota+offset));
 
             }
         }
@@ -332,15 +331,15 @@ miThread.start();
         if (traste == 0 && traste != ultimoTrastePresionado && momentoPulsada.getTime()>=tiempoToSlide){
             fechaSuelto = new Date();
             if (guitarProperties.isControl_string_muteOnRelease()){
-                setChanged();
-                notifyObservers(new OrdenApagadoCuerdaDelay(dispositivo,canal));
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenApagadoCuerdaDelay(dispositivo,canal));
             }
         }else if (traste != 0 && ultimoTrastePresionado == 0){
 
 //            Date nuevaPresion = new Date();
 //            if (nuevaPresion.getTime()-fechaSuelto.getTime()<100){
-                setChanged();
-                notifyObservers(new OrdenApagadoCuerda(dispositivo,canal));
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenApagadoCuerda(dispositivo,canal));
 //            }
             
         }
@@ -348,7 +347,7 @@ miThread.start();
     }
 
 
-    public void update(Observable o, Object arg) {
+/*    public void update(Observable o, Object arg) {
         //System.out.println(arg.getClass().getName());
         if (arg instanceof OrdenBotonMas){
             this.modificoTonoInicial(1);
@@ -366,26 +365,25 @@ miThread.start();
             slide = !slide;
         }else if (arg instanceof OrdenMovePadOff){
             if (guitarProperties.isControl_bend_wheel()){
-                setChanged();
-                notifyObservers(new OrdenBendOff(dispositivo,bendingTones));
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBendOff(dispositivo,bendingTones));
                 bendingTones = 0;
             }else{
                 bend = false;
             }
         }else if (arg instanceof OrdenToStrings){
             if (guitarProperties.isControl_bend_wheel()){
-                setChanged();
                 bendingTones = guitarProperties.getControl_bend_wheel_tones();
-                notifyObservers(new OrdenBendUp(dispositivo,bendingTones));
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBendUp(dispositivo,bendingTones));
 
             }else{
                 bend = true;
             }
         }else if (arg instanceof OrdenToNeck){
             if (guitarProperties.isControl_bend_wheel()){
-                setChanged();
+                
                 bendingTones = guitarProperties.getControl_tremolo_wheel_tones();
-                notifyObservers(new OrdenBendUp(dispositivo,bendingTones));
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBendUp(dispositivo,bendingTones));
 
             }else{
                 bend = true;
@@ -406,18 +404,18 @@ miThread.start();
                            }
                        }
                        if (bendingTonesAux>bendingTones){
-                            setChanged();
-                            notifyObservers(new OrdenBendUp(dispositivo,bendingTonesAux));
+                            
+                            GuitarraMustangSalida.getInstance().ejecutar(new OrdenBendUp(dispositivo,bendingTonesAux));
                        }else{
-                            setChanged();
-                            notifyObservers(new OrdenBendOff(dispositivo,bendingTones-bendingTonesAux));
+                            
+                            GuitarraMustangSalida.getInstance().ejecutar(new OrdenBendOff(dispositivo,bendingTones-bendingTonesAux));
                        }
                        bendingTones=bendingTonesAux;
 
                     }else{
                         bend=false;
-                        setChanged();
-                        notifyObservers(new OrdenBendOff(dispositivo,bendingTones));
+                        
+                        GuitarraMustangSalida.getInstance().ejecutar(new OrdenBendOff(dispositivo,bendingTones));
                         controlBending.clear();
                         bendingTones=0;
                         //si el cambio es en la misma cuerda deja de hacer bending
@@ -426,5 +424,5 @@ miThread.start();
             }
         
     
-    }
+    }*/
 }

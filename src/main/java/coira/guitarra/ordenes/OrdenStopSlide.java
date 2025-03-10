@@ -15,7 +15,7 @@ public class OrdenStopSlide extends OrdenGuitarra{
 private int variacion;
 private int nota;
 private int canal;
-private int disp;
+private String disp;
 private boolean sigue;
 
     public int getVariacion() {
@@ -50,17 +50,17 @@ private boolean sigue;
         this.nota = nota;
     }
 
-    public int getDisp() {
+    public String getDisp() {
         return disp;
     }
 
-    public void setDisp(int disp) {
+    public void setDisp(String disp) {
         this.disp = disp;
     }
 
     
     
-    public OrdenStopSlide(int disp,int variacion, int canal, boolean sigue, int nota) {
+    public OrdenStopSlide(String disp,int variacion, int canal, boolean sigue, int nota) {
         this.disp = disp;
         this.variacion = variacion;
         this.canal = canal;

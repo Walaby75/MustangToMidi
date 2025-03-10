@@ -25,6 +25,7 @@ import coira.guitarra.ordenes.OrdenSwitchOnOffSlide;
 import coira.guitarra.ordenes.OrdenToNeck;
 import coira.properties.GeneralProperties;
 import coira.properties.GuitarProperties;
+import coira.salida.GuitarraMustangSalida;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -152,38 +153,38 @@ public class EntradaGuitarra extends Observable implements Runnable{
             switch (data[1]) {
                 case 16 -> {
                     // enmudece todo
-                    setChanged();
-                    notifyObservers(new OrdenApagado());
+                    
+                    GuitarraMustangSalida.getInstance().ejecutar(new OrdenApagado());
                 }
                 case 1 -> {
                     // baja un semitono
-                    setChanged();
-                    notifyObservers(new OrdenBajoFuerza());
+                    
+                    GuitarraMustangSalida.getInstance().ejecutar(new OrdenBajoFuerza());
                 }
                 case 17 -> {
                     //sube un semitono 17
-                    setChanged();
-                    notifyObservers(new OrdenBotonMenos());
+                    
+                    GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonMenos());
                 }
                 case 18 -> {
                     //vuelve tono al inicio 18
-                    setChanged();
-                    notifyObservers(new OrdenBotonMas());
+                    
+                    GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonMas());
                 }
                 case 3 -> {
                     //sube fuerzas topes 3
-                    setChanged();
-                    notifyObservers(new OrdenBotonMasMenos());
+                    
+                    GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonMasMenos());
                 }
                 case 2 -> {
                     //baja fuerzas tope 2
-                    setChanged();
-                    notifyObservers(new OrdenSuboFuerza());
+                    
+                    GuitarraMustangSalida.getInstance().ejecutar(new OrdenSuboFuerza());
                 }
                 case 19 -> {
                     //vuelve fuerzas al origen
-                    setChanged();
-                    notifyObservers(new OrdenReseteoFuerza());
+                    
+                    GuitarraMustangSalida.getInstance().ejecutar(new OrdenReseteoFuerza());
                 }
                 default -> {
                 }
@@ -209,23 +210,23 @@ public class EntradaGuitarra extends Observable implements Runnable{
             auxValor-=auxRes;
             boton2=auxValor==8;
             if (boton1){
-                setChanged();
-                notifyObservers(new OrdenBoton1());
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBoton1());
             }
             if (boton2){
-                setChanged();
-                notifyObservers(new OrdenBoton2());
-                            setChanged();
-            notifyObservers(new OrdenSwitchOnOffSlide());
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBoton2());
+                            
+            GuitarraMustangSalida.getInstance().ejecutar(new OrdenSwitchOnOffSlide());
 
             }
             if (botonA){
-                setChanged();
-                notifyObservers(new OrdenBotonA());
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonA());
             }
             if (botonB){
-                setChanged();
-                notifyObservers(new OrdenBotonB());
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonB());
             }
 
         }
@@ -236,16 +237,16 @@ public class EntradaGuitarra extends Observable implements Runnable{
     public void interpretoByte2(byte[] data, byte[] olddata){
         if (data[2]!=olddata[2]){
             if (data[2]==4){
-                setChanged();
-                notifyObservers(new OrdenToStrings());
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenToStrings());
             }
             if (data[2]==8){
-                setChanged();
-                notifyObservers(new OrdenMovePadOff());
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenMovePadOff());
             }
             if (data[2]==6){
-                setChanged();
-                notifyObservers(new OrdenToNeck());
+                
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenToNeck());
             }
             
         }

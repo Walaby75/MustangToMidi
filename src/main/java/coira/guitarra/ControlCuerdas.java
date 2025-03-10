@@ -125,11 +125,11 @@ public class ControlCuerdas  {
     public void detectoCambio(Map<Integer,DataCuerda> cuerdas ){
         
         cuerda_6.interpretoEvento(cuerdas.get(6).traste,cuerdas.get(6).fuerzaGolpe);
-        cuerda_5.interpretoEvento(cuerdas.get(5).traste,cuerdas.get(6).fuerzaGolpe);
-        cuerda_4.interpretoEvento(cuerdas.get(4).traste,cuerdas.get(6).fuerzaGolpe);
-        cuerda_3.interpretoEvento(cuerdas.get(3).traste,cuerdas.get(6).fuerzaGolpe);
-        cuerda_2.interpretoEvento(cuerdas.get(2).traste,cuerdas.get(6).fuerzaGolpe);
-        cuerda_1.interpretoEvento(cuerdas.get(1).traste,cuerdas.get(6).fuerzaGolpe);
+        cuerda_5.interpretoEvento(cuerdas.get(5).traste,cuerdas.get(5).fuerzaGolpe);
+        cuerda_4.interpretoEvento(cuerdas.get(4).traste,cuerdas.get(4).fuerzaGolpe);
+        cuerda_3.interpretoEvento(cuerdas.get(3).traste,cuerdas.get(3).fuerzaGolpe);
+        cuerda_2.interpretoEvento(cuerdas.get(2).traste,cuerdas.get(2).fuerzaGolpe);
+        cuerda_1.interpretoEvento(cuerdas.get(1).traste,cuerdas.get(1).fuerzaGolpe);
         
         
     }

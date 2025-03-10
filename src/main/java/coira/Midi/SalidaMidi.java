@@ -291,7 +291,7 @@ public class SalidaMidi implements  Observer{
                    
  
                     final ShortMessage myMsg = new ShortMessage();
-                    legato(true, canal, disp);
+//                    legato(true, canal, disp);
                     if (guitarProperties.isControl_slide_onNote()){
                         //114 acou6tic
                         //106 electri6ity
@@ -314,7 +314,7 @@ public class SalidaMidi implements  Observer{
                         devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.SLIDE_UP_ON)).getReceiver().send(myMsg, -1);
                         hammerOn(disp, canal, nota, variacion);
                     }
-                    legato(false, canal, disp);
+//                    legato(false, canal, disp);
                     Thread miThread = new Thread(){
                         public void run() {
                             try {
@@ -376,7 +376,7 @@ public class SalidaMidi implements  Observer{
     public void hammerOn (final int disp,final int canal, final int nota, int variacion){
         try {
                 final ShortMessage myMsg = new ShortMessage();
-                legato(true, canal, disp);
+//                legato(true, canal, disp);
                 myMsg.setMessage(ShortMessage.NOTE_ON,canal-1,guitarProperties.getControl_hammer_on_value(),guitarProperties.getControl_hammer_on_strength());
                 devices.get("default").getReceiver().send(myMsg, -1);
                 devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
@@ -415,7 +415,7 @@ Thread miThread = new Thread(){
                 //myMsg.setMessage(ShortMessage.NOTE_OFF,canal,slideDown,ultimaFuerza[canal]);
                 //device.getReceiver().send(myMsg, -1);
             System.out.println("hammeron");
-            legato(false, canal, disp);
+//            legato(false, canal, disp);
             //devices.get(canal-1).getReceiver().send(myMsg, -1);
         } catch (InvalidMidiDataException ex1) {
             Logger.getLogger(SalidaMidi.class.getName()).log(Level.SEVERE, null, ex1);
@@ -439,18 +439,18 @@ miThread.start();
         
     }
         
-    public void pullOff (final int disp,final int canal, final int nota, int variacion){
+    public void pullOff (final String disp,final int canal, final int nota, int variacion){
         try {
                 final ShortMessage myMsg = new ShortMessage();
                 legato(true, canal, disp);
                 myMsg.setMessage(ShortMessage.NOTE_ON,canal-1,guitarProperties.getControl_pull_off_value(),guitarProperties.getControl_pull_off_strength());
                 devices.get("default").getReceiver().send(myMsg, -1);
-                devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
+//                devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
 
                 if (guitarProperties.isControl_pull_off_keyswitch()){
                     myMsg.setMessage(ShortMessage.NOTE_OFF,canal-1,guitarProperties.getControl_pull_off_value(),guitarProperties.getControl_pull_off_strength());
                     devices.get("default").getReceiver().send(myMsg, -1);
-                    devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
+//                    devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
                 }
 Thread miThread = new Thread(){
 	public void run() {
@@ -463,7 +463,7 @@ try{
                 myMsg.setMessage(ShortMessage.NOTE_ON,canal-1,nota,ultimaFuerza[canal]);
                 //myMsg.setMessage(ShortMessage.NOTE_ON,canal,nota,60);
                 devices.get("default").getReceiver().send(myMsg, -1);
-                devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
+//                devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
 
                 
                 //electricyti 24
@@ -471,10 +471,10 @@ try{
                 
             myMsg.setMessage(ShortMessage.NOTE_ON, canal-1, guitarProperties.getControl_pull_off_stop(), 100);
             devices.get("default").getReceiver().send(myMsg, -1);
-            devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
+//            devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
             myMsg.setMessage(ShortMessage.NOTE_OFF, canal-1,guitarProperties.getControl_pull_off_stop(), 100);
             devices.get("default").getReceiver().send(myMsg, -1);
-            devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
+//            devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
 
                 
                 
@@ -505,14 +505,14 @@ miThread.start();
         
     }
         
-    public void legato(boolean iniciar,int canal, int disp){
+    public void legato(boolean iniciar,int canal, String disp){
         final ShortMessage myMsg = new ShortMessage();
         try {
             if (guitarProperties.isControl_legato_onNote()){
                 int orden=iniciar?ShortMessage.NOTE_ON:ShortMessage.NOTE_OFF;
                 myMsg.setMessage(orden, canal-1, guitarProperties.getControl_legato_value(), 100);
                 devices.get("default").getReceiver().send(myMsg, -1);
-                devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
+//                devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.PULL_HAMMER)).getReceiver().send(myMsg, -1);
             }
         } catch (InvalidMidiDataException ex) {
             Logger.getLogger(SalidaMidi.class.getName()).log(Level.SEVERE, null, ex);
@@ -533,7 +533,7 @@ miThread.start();
                     sliding=true;
 
                     ShortMessage myMsg = new ShortMessage();
-                    legato(true, canal, disp);
+//                    legato(true, canal, disp);
                     if (guitarProperties.isControl_slide_onNote()){
                         //104 electricity
                         //111 acou6tic
@@ -549,7 +549,7 @@ miThread.start();
                         devices.get("default").getReceiver().send(myMsg, -1);
                         devices.get(controlSalida.obtenerPuerto(disp,EnumeradoOrdenes.SLIDE_UP_ON)).getReceiver().send(myMsg, -1);
                     }
-                    legato(false, canal, disp);
+//                    legato(false, canal, disp);
                     Thread miThread = new Thread(){
                         public void run() {
                             try {
@@ -928,31 +928,31 @@ miThread.start();*/
             pullOff(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());
         }else if (arg instanceof OrdenHammerOn){            
             OrdenHammerOn orden = (OrdenHammerOn)arg;
-            hammerOn(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());
+//            hammerOn(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());
 
         }else if (arg instanceof OrdenSlideDown){
             OrdenSlideDown orden = (OrdenSlideDown)arg;
             if (guitarProperties.isControl_slide_wheel()){
-                slideDown(orden.getDisp(),orden.getCanal(), orden.getVariacion());
+//                slideDown(orden.getDisp(),orden.getCanal(), orden.getVariacion());
             }else{
-                slide_Down(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());
+//                slide_Down(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());
             }
         }else if (arg instanceof OrdenSlideUp){
             OrdenSlideUp orden = (OrdenSlideUp)arg;
             if (guitarProperties.isControl_slide_wheel()){
-                slideUp(orden.getDisp(),orden.getCanal(), orden.getVariacion());
+//                slideUp(orden.getDisp(),orden.getCanal(), orden.getVariacion());
             }else{
-                slide_Up(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());
+//                slide_Up(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());
             }
         }else if (arg instanceof OrdenSlide){
             OrdenSlide orden = (OrdenSlide)arg;
             slideP(orden.getDisp(),orden.getCanal(), orden.getNota());
         }else if (arg instanceof OrdenApagadoCuerda){
             OrdenApagadoCuerda orden = (OrdenApagadoCuerda)arg;
-            cortarNota(orden.getDispositivo(),orden.getCanal(),ultimaNota[orden.getCanal()],ultimaFuerza[orden.getCanal()]);
+//            cortarNota(orden.getDispositivo(),orden.getCanal(),ultimaNota[orden.getCanal()],ultimaFuerza[orden.getCanal()]);
         }else if (arg instanceof OrdenApagadoCuerdaDelay){
             OrdenApagadoCuerdaDelay orden = (OrdenApagadoCuerdaDelay)arg;
-            cortarNotaDelay(orden.getDispositivo(),orden.getCanal(),ultimaNota[orden.getCanal()],ultimaFuerza[orden.getCanal()],ultimaPulsada[orden.getCanal()]);
+//            cortarNotaDelay(orden.getDispositivo(),orden.getCanal(),ultimaNota[orden.getCanal()],ultimaFuerza[orden.getCanal()],ultimaPulsada[orden.getCanal()]);
 
         }else if (arg instanceof OrdenSwitchOnOffSlide){
             slideBool=!slideBool;
@@ -961,17 +961,17 @@ miThread.start();*/
             }
         }else if (arg instanceof OrdenBendUp){
             OrdenBendUp orden = (OrdenBendUp)arg;
-            if (ultimaCuerda==orden.getDisp()){
-                iniciarBending(orden.getDisp(), 0,orden.getTones());
-            }
+//            if (ultimaCuerda==orden.getDisp()){
+//                iniciarBending(orden.getDisp(), 0,orden.getTones());
+//            }
         }else if (arg instanceof OrdenBendOff){
             OrdenBendOff orden = (OrdenBendOff)arg;
-            if (ultimaCuerda==orden.getDisp()){
-                datenerBending(orden.getDisp(), 0,orden.getTones());
-            }
+//            if (ultimaCuerda==orden.getDisp()){
+//                datenerBending(orden.getDisp(), 0,orden.getTones());
+//            }
         }else if (arg instanceof OrdenStopSlide){
             OrdenStopSlide orden = (OrdenStopSlide)arg;
-            stop_Slide(orden.getDisp(), orden.getCanal());
+//            stop_Slide(orden.getDisp(), orden.getCanal());
         }else if (arg instanceof OrdenCambioCuerda){
           //  OrdenCambioCuerda orden = (OrdenCambioCuerda)arg;
           //  cambiarCuerda(orden.getDispositivo(), orden.getCanal(), orden.getValor());

@@ -11,7 +11,7 @@ import coira.Midi.NotaMidi;
  * @author Administrador
  */
 public class OrdenApagadoCuerdaDelay extends OrdenGuitarra{
-        int dispositivo = -10;
+        String dispositivo = null;
         int canal = -10;
         NotaMidi nota;
         
@@ -24,11 +24,11 @@ public class OrdenApagadoCuerdaDelay extends OrdenGuitarra{
         this.nota = nota;
     }
 
-    public int getDispositivo() {
+    public String getDispositivo() {
         return dispositivo;
     }
 
-    public void setDispositivo(int dispositivo) {
+    public void setDispositivo(String dispositivo) {
         this.dispositivo = dispositivo;
     }
 
@@ -43,12 +43,12 @@ public class OrdenApagadoCuerdaDelay extends OrdenGuitarra{
     
     
     
-    public OrdenApagadoCuerdaDelay(int dispositivo ,NotaMidi nota) {
+    public OrdenApagadoCuerdaDelay(String dispositivo ,NotaMidi nota) {
         this.nota = nota;
         this.dispositivo = dispositivo;
     }
         
-    public OrdenApagadoCuerdaDelay(int dispositivo ,int canal) {
+    public OrdenApagadoCuerdaDelay(String dispositivo ,int canal) {
         this.canal = canal;
         this.dispositivo = dispositivo;
     }  
