@@ -7,8 +7,16 @@ package coira.entrada;
 
 import coira.guitarra.ControlCuerdas;
 import coira.guitarra.DataCuerda;
-import coira.properties.GeneralProperties;
-import coira.properties.GuitarProperties;
+import coira.guitarra.ordenes.OrdenBoton1;
+import coira.guitarra.ordenes.OrdenBoton2;
+import coira.guitarra.ordenes.OrdenBotonA;
+import coira.guitarra.ordenes.OrdenBotonB;
+import coira.guitarra.ordenes.OrdenMovePadOff;
+import coira.guitarra.ordenes.OrdenNotToNeck;
+import coira.guitarra.ordenes.OrdenNotToStrings;
+import coira.guitarra.ordenes.OrdenToNeck;
+import coira.guitarra.ordenes.OrdenToStrings;
+import coira.salida.GuitarraMustangSalida;
 import java.util.HashMap;
 import java.util.Map;
 import org.hid4java.HidDevice;
@@ -151,13 +159,16 @@ public class GuitarraMustangEntrada{
             auxValor-=auxRes;
             boton2=auxValor==8;
             if (boton1){
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBoton1());
             }
             if (boton2){
-
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBoton2());
             }
             if (botonA){
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonA());
             }
             if (botonB){
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonB());
             }
 
         }
@@ -171,18 +182,23 @@ public class GuitarraMustangEntrada{
             System.out.println("Byte2 "+data[2] );
             if (data[2]==4){
                 //hacia las cuerdas
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenToStrings());
             }
             if (data[2]==8){
                //pad off 
+               GuitarraMustangSalida.getInstance().ejecutar(new OrdenMovePadOff());
             }
             if (data[2]==6){
                 // hacia el cuello
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenToNeck());
             }
             if (data[2]==0){
                 // aleja las cuerdas
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenNotToStrings());
             }
             if (data[2]==2){
                 // aleja del cuello
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenNotToNeck());
             }
 
             

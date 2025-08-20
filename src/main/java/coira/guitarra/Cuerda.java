@@ -4,33 +4,15 @@
  */
 package coira.guitarra;
 
-import coira.Midi.NotaMidi;
 import coira.guitarra.eventos.EventoLegato;
 import coira.guitarra.eventos.EventoTrasteCuerda;
 import coira.guitarra.ordenes.OrdenApagadoCuerda;
 import coira.guitarra.ordenes.OrdenApagadoCuerdaDelay;
-import coira.guitarra.ordenes.OrdenBajoFuerza;
-import coira.guitarra.ordenes.OrdenBendOff;
-import coira.guitarra.ordenes.OrdenBendUp;
-import coira.guitarra.ordenes.OrdenBoton2;
-import coira.guitarra.ordenes.OrdenBotonMas;
-import coira.guitarra.ordenes.OrdenBotonMasMenos;
-import coira.guitarra.ordenes.OrdenBotonMenos;
-import coira.guitarra.ordenes.OrdenCambioCuerda;
 import coira.guitarra.ordenes.OrdenHammerOn;
-import coira.guitarra.ordenes.OrdenMovePadOff;
 import coira.guitarra.ordenes.OrdenPullOff;
-import coira.guitarra.ordenes.OrdenPulsada;
-import coira.guitarra.ordenes.OrdenPulsadaBend;
-import coira.guitarra.ordenes.OrdenReseteoFuerza;
-import coira.guitarra.ordenes.OrdenSlide;
 import coira.guitarra.ordenes.OrdenSlideDown;
 import coira.guitarra.ordenes.OrdenSlideUp;
 import coira.guitarra.ordenes.OrdenStopSlide;
-import coira.guitarra.ordenes.OrdenSuboFuerza;
-import coira.guitarra.ordenes.OrdenSwitchOnOffSlide;
-import coira.guitarra.ordenes.OrdenToNeck;
-import coira.guitarra.ordenes.OrdenToStrings;
 import coira.properties.GuitarProperties;
 import coira.salida.GuitarraMustangSalida;
 import java.util.Date;
@@ -62,6 +44,7 @@ public class Cuerda {
     private int offSetFuerzaMin =0;
     private int ultimoTrastePulsado = 0;
     private int ultimaPulsada = -10000;
+    private int cuerdaPosicion=0;
     private Date momentoPulsada = new Date(0);
     private int cc;
     private int key_string;
@@ -81,10 +64,11 @@ public class Cuerda {
 
 
     
-    public Cuerda(int primerNota, int canal, String puerto){
+    public Cuerda(int primerNota, int canal, String puerto, int cuerdaPosicion){
         this.primerNota=primerNota;
         this.canal=canal;
         this.puerto=puerto;
+        this.cuerdaPosicion = cuerdaPosicion;
         
     }
     
@@ -107,6 +91,14 @@ public class Cuerda {
 
     public void setDispositivo(String dispositivo) {
         this.dispositivo = dispositivo;
+    }
+
+    public int getCuerdaPosicion() {
+        return cuerdaPosicion;
+    }
+
+    public void setCuerdaPosicion(int cuerdaPosicion) {
+        this.cuerdaPosicion = cuerdaPosicion;
     }
 
     
@@ -223,7 +215,7 @@ public class Cuerda {
         }
         if (ultimoTrastePresionado!=traste){
             
-            GuitarraMustangSalida.getInstance().ejecutar(new EventoTrasteCuerda(traste, this.getCanal()));
+            GuitarraMustangSalida.getInstance().ejecutar(new EventoTrasteCuerda(traste, this.getCanal(), this.getCuerdaPosicion()));
         }
 
         

@@ -26,10 +26,8 @@ import coira.guitarra.ordenes.OrdenToNeck;
 import coira.properties.GeneralProperties;
 import coira.properties.GuitarProperties;
 import coira.salida.GuitarraMustangSalida;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Observable;
 import org.hid4java.HidDevice;
 import org.hid4java.HidManager;
 import org.hid4java.HidServices;
@@ -39,7 +37,7 @@ import org.hid4java.HidServicesSpecification;
  *
  * @author Administrador
  */
-public class EntradaGuitarra extends Observable implements Runnable{
+public class EntradaGuitarra implements Runnable{
     
     GuitarProperties guitarProperties;
     int largo =32;
