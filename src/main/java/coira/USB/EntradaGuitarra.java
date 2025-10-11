@@ -83,7 +83,8 @@ public class EntradaGuitarra implements Runnable{
         boolean pulsado = Math.abs(nuevo-viejo)!=128;
         if (pulsado){
             int valorFuerza = nuevo>80?nuevo:80;
-            if (cuerda==1){
+
+/*            if (cuerda==1){
                 nota=new NotaMidi(disp,string_E+notaString_E, cuerda,guitarProperties.getString_strength_min(),guitarProperties.getString_strength_max() );
             }else if (cuerda==2){
                 nota=new NotaMidi(disp,string_A+notaString_A, cuerda, guitarProperties.getString_strength_min(),guitarProperties.getString_strength_max());
@@ -96,6 +97,7 @@ public class EntradaGuitarra implements Runnable{
             }else if (cuerda==6){
                 nota=new NotaMidi(disp,string_e+notaString_e, cuerda, guitarProperties.getString_strength_min(),guitarProperties.getString_strength_max());
             }
+*/
         }
         return nota;
     }

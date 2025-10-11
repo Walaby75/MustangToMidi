@@ -917,7 +917,7 @@ miThread.start();*/
             cortarTodos();
         }else if (arg instanceof OrdenPulsada){
             OrdenPulsada orden = (OrdenPulsada)arg;
-            enviarNota(orden.getNota().getDisp(), orden.getNota().getCanal(),orden.getNota().getNota(),orden.getNota().getFuerza(),orden.getCc(),orden.getKey_string());
+           // enviarNota(orden.getNota().getDisp(), orden.getNota().getCanal(),orden.getNota().getNota(),orden.getNota().getFuerza(),orden.getCc(),orden.getKey_string());
             
         }else if (arg instanceof OrdenPulsadaBend){
             OrdenPulsadaBend orden = (OrdenPulsadaBend)arg;
@@ -925,7 +925,7 @@ miThread.start();*/
             
         }else if (arg instanceof OrdenPullOff){
             OrdenPullOff orden = (OrdenPullOff)arg;
-            pullOff(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());
+            //pullOff(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());
         }else if (arg instanceof OrdenHammerOn){            
             OrdenHammerOn orden = (OrdenHammerOn)arg;
 //            hammerOn(orden.getDisp(),orden.getCanal(),orden.getNota(),orden.getVariacion());

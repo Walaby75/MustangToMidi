@@ -21,6 +21,7 @@ public class CFGCuerdas {
     private static CFGCuerdas instance;
     private CFGCuerdas(){};
     private Map<Integer,DataCFGCuerda> cuerdas;
+    private int max_Strength, min_Strength;
     
     
     public static CFGCuerdas getInstance(){
@@ -37,6 +38,25 @@ public class CFGCuerdas {
     public void setCuerdas(Map<Integer, DataCFGCuerda> cuerdas) {
         this.cuerdas = cuerdas;
     }
+
+    public int getMax_Strength() {
+        return max_Strength;
+    }
+
+    public void setMax_Strength(int max_Strength) {
+        this.max_Strength = max_Strength;
+    }
+
+    public int getMin_Strength() {
+        return min_Strength;
+    }
+
+    public void setMin_Strength(int min_Strength) {
+        this.min_Strength = min_Strength;
+    }
+    
+    
+    
     
     public void configurar(String archivo){
         Properties propiedades = new Properties();
@@ -44,10 +64,23 @@ public class CFGCuerdas {
             propiedades.load(fis);
             int cuerda=1;
             cuerdas = new HashMap<>();
-            while (propiedades.getProperty("Cuerda"+cuerda)!=null){
-                cuerdas.put(cuerda, new DataCFGCuerda(Util.noteToMidi(propiedades.getProperty("Cuerda"+cuerda).trim())));
+            while (cuerda < 11){
+                if (propiedades.getProperty("Cuerda"+cuerda)!=null){
+                    cuerdas.put(cuerda, new DataCFGCuerda(Util.noteToMidi(propiedades.getProperty("Cuerda"+cuerda).trim()),propiedades.getProperty("Modo").trim(),Integer.parseInt(propiedades.getProperty("Tramos").trim())));
+                }
                 cuerda=cuerda+1;
             }
+            try{
+                max_Strength = Integer.parseInt(propiedades.getProperty("max"));
+            }catch (Exception e){
+                max_Strength = 128;
+            }
+            try{
+                min_Strength = Integer.parseInt(propiedades.getProperty("min"));
+            }catch (Exception e){
+                min_Strength = -10;
+            }
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

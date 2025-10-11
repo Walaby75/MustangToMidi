@@ -6,6 +6,7 @@ package coira.salida;
 
 import coira.guitarra.eventos.EventoTrasteCuerda;
 import coira.guitarra.ordenes.OrdenGuitarra;
+import coira.guitarra.ordenes.OrdenPulsada;
 
 /**
  *
@@ -22,11 +23,14 @@ public class GuitarraMustangSalida {
     }
     
     public void ejecutar(OrdenGuitarra orden){
-        System.out.println("Orden recibida : "+orden.getClass().getCanonicalName());
+        System.out.println("Orden guitarra recibida : "+orden.getClass().getCanonicalName());
+        if (orden instanceof OrdenPulsada){
+           
+        }
     }
 
     public void ejecutar(EventoTrasteCuerda orden){
-        System.out.println("Orden recibida : "+orden.getClass().getCanonicalName());
+        System.out.println("Orden cuerda recibida : "+orden.getClass().getCanonicalName());
     }
 
     

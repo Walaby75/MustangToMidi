@@ -82,6 +82,7 @@ public class ControlCuerdas  {
 
     public void setGuitarProperties(GuitarProperties guitarProperties) {
         this.guitarProperties = guitarProperties;
+/*
         cuerda_6.setGuitarProperties(guitarProperties);
         cuerda_6.setPrimerNota(guitarProperties.getString_initial_value_lowE());
         cuerda_5.setGuitarProperties(guitarProperties);
@@ -94,6 +95,7 @@ public class ControlCuerdas  {
         cuerda_2.setPrimerNota(guitarProperties.getString_initial_value_B());
         cuerda_1.setGuitarProperties(guitarProperties);
         cuerda_1.setPrimerNota(guitarProperties.getString_initial_value_highE());
+*/
     }
 
     /*
@@ -148,18 +150,20 @@ public class ControlCuerdas  {
     
     
     public ControlCuerdas(){
-        if (CFGCuerdas.getInstance().getCuerdas().get(6) != null)
-            cuerda_6 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(6).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(6).getCanal(),CFGSalidas.getInstance().getSalidas().get(6).getPuerto(),6);
+        if (CFGCuerdas.getInstance().getCuerdas().get(6) != null){
+            cuerda_6 = new Cuerda("cuerda_6",CFGCuerdas.getInstance().getCuerdas().get(6).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(6).getCanal(),CFGSalidas.getInstance().getSalidas().get(6).getPuerto(),6);
+        
+        }
         if (CFGCuerdas.getInstance().getCuerdas().get(5) != null)
-            cuerda_5 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(5).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(5).getCanal(),CFGSalidas.getInstance().getSalidas().get(5).getPuerto(),5);
+            cuerda_5 = new Cuerda("cuerda_5",CFGCuerdas.getInstance().getCuerdas().get(5).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(5).getCanal(),CFGSalidas.getInstance().getSalidas().get(5).getPuerto(),5);
         if (CFGCuerdas.getInstance().getCuerdas().get(4) != null)
-            cuerda_4 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(4).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(4).getCanal(),CFGSalidas.getInstance().getSalidas().get(4).getPuerto(),4);
+            cuerda_4 = new Cuerda("cuerda_4",CFGCuerdas.getInstance().getCuerdas().get(4).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(4).getCanal(),CFGSalidas.getInstance().getSalidas().get(4).getPuerto(),4);
         if (CFGCuerdas.getInstance().getCuerdas().get(3) != null)
-            cuerda_3 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(3).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(3).getCanal(),CFGSalidas.getInstance().getSalidas().get(3).getPuerto(),3);
+            cuerda_3 = new Cuerda("cuerda_3",CFGCuerdas.getInstance().getCuerdas().get(3).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(3).getCanal(),CFGSalidas.getInstance().getSalidas().get(3).getPuerto(),3);
         if (CFGCuerdas.getInstance().getCuerdas().get(2) != null)
-            cuerda_2 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(2).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(2).getCanal(),CFGSalidas.getInstance().getSalidas().get(2).getPuerto(),2);
+            cuerda_2 = new Cuerda("cuerda_2",CFGCuerdas.getInstance().getCuerdas().get(2).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(2).getCanal(),CFGSalidas.getInstance().getSalidas().get(2).getPuerto(),2);
         if (CFGCuerdas.getInstance().getCuerdas().get(1) != null)
-            cuerda_1 = new Cuerda(CFGCuerdas.getInstance().getCuerdas().get(1).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(1).getCanal(),CFGSalidas.getInstance().getSalidas().get(1).getPuerto(),1);
+            cuerda_1 = new Cuerda("cuerda_1",CFGCuerdas.getInstance().getCuerdas().get(1).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(1).getCanal(),CFGSalidas.getInstance().getSalidas().get(1).getPuerto(),1);
         
     }
     

@@ -10,13 +10,10 @@ import coira.Midi.NotaMidi;
  *
  * @author Administrador
  */
-public class OrdenPullOff extends OrdenGuitarra{
+public class OrdenPullOff extends OrdenLegato{
 
-private int variacion;
-private int canal;
-private boolean sigue;
-private int nota;
-private String disp;
+    int variacion;
+    int fuerza;
 
     public int getVariacion() {
         return variacion;
@@ -26,50 +23,21 @@ private String disp;
         this.variacion = variacion;
     }
 
-    public int getCanal() {
-        return canal;
+    public int getFuerza() {
+        return fuerza;
     }
 
-    public void setCanal(int canal) {
-        this.canal = canal;
+    public void setFuerza(int fuerza) {
+        this.fuerza = fuerza;
     }
 
-    public boolean isSigue() {
-        return sigue;
-    }
-
-    public void setSigue(boolean sigue) {
-        this.sigue = sigue;
-    }
-
-    public int getNota() {
-        return nota;
-    }
-
-    public void setNota(int nota) {
-        this.nota = nota;
-    }
-
-    public String getDisp() {
-        return disp;
-    }
-
-    public void setDisp(String disp) {
-        this.disp = disp;
-    }
-    
-    
-    
-
-    public OrdenPullOff(String disp,int variacion, int canal, boolean sigue, int nota) {
-        this.disp = disp;
+    public OrdenPullOff(int variacion, int fuerza, String origen) {
         this.variacion = variacion;
-        this.canal = canal;
-        this.sigue = sigue;
-        this.nota = nota;
+        this.fuerza = fuerza;
+        this.origen = origen;
     }
 
-        
     
     
+
 }

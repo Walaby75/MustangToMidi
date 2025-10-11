@@ -12,42 +12,31 @@ import coira.Midi.NotaMidi;
  */
 public class OrdenPulsada extends OrdenGuitarra{
 
-        NotaMidi nota;
-        int cc;
-        int key_string;
+    int fuerza;
+    int nota;
 
-    public NotaMidi getNota() {
+    public int getFuerza() {
+        return fuerza;
+    }
+
+    public void setFuerza(int fuerza) {
+        this.fuerza = fuerza;
+    }
+
+    public int getNota() {
         return nota;
     }
 
-    public void setNota(NotaMidi nota) {
+    public void setNota(int nota) {
         this.nota = nota;
     }
 
-    public int getCc() {
-        return cc;
+    public OrdenPulsada(int fuerza, int nota, String origen) {
+        this.fuerza = fuerza;
+        this.nota = nota;
+        this.origen = origen;
     }
-
-    public void setCc(int cc) {
-        this.cc = cc;
-    }
-
-    public int getKey_string() {
-        return key_string;
-    }
-
-    public void setKey_string(int key_string) {
-        this.key_string = key_string;
-    }
-
     
-    public OrdenPulsada(NotaMidi nota, int cc, int key_string) {
-        this.nota = nota;
-        this.cc = cc;
-        this.key_string=key_string;
-    }
-        
-        
     
     
 }

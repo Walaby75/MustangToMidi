@@ -2,6 +2,7 @@ C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\entrada\GuitarraMustangEntrada.
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\gui\GuitarToMidi.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ControlCuerdas.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\Cuerda.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\CuerdaV2.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\DataCuerda.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\eventos\Evento.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\eventos\EventoBend.java
@@ -37,6 +38,7 @@ C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenBotonMeno
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenCambioCuerda.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenGuitarra.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenHammerOn.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenLegato.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenMovePadOff.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenNotToNeck.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenNotToStrings.java

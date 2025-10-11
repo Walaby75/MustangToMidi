@@ -46,18 +46,7 @@ public class NotaMidi {
         this.disp = disp;
     }
 
-    
-    
-    
-    /*
-    public NotaMidi(int nota, int canal, int fuerza) {
-        this.nota = nota;
-        this.canal = canal;
-        this.fuerza = fuerza;
-        
-    }
-    */
-    
+
     public NotaMidi(int disp,int nota, int canal, int fuerza,  int minimo) {
         this.nota = nota;
         this.canal = canal;
@@ -83,6 +72,14 @@ public class NotaMidi {
             fuerza=fuerza<=maximo?fuerza:maximo;
             
         }
+        this.fuerza = fuerza;
+        
+    }
+
+    public NotaMidi(int nota, int canal, int fuerza) {
+        this.nota = nota;
+        this.canal = canal;
+
         this.fuerza = fuerza;
         
     }

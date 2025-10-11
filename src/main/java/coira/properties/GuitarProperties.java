@@ -24,12 +24,6 @@ import java.util.logging.Logger;
 public class GuitarProperties {
     
    
-    private int string_initial_value_lowE=40;
-    private int string_initial_value_A=45;
-    private int string_initial_value_D=50;
-    private int string_initial_value_G=55;
-    private int string_initial_value_B=59;
-    private int string_initial_value_highE=64;
     
     private int string_go_to_sustain=24;
     
@@ -51,16 +45,6 @@ public class GuitarProperties {
     
     private boolean string_cc_selection=true;
     
-    private int string_initial_channel_lowE=1;
-    private int string_initial_channel_A=2;
-    private int string_initial_channel_D=3;
-    private int string_initial_channel_G=4;
-    private int string_initial_channel_B=5;
-    private int string_initial_channel_highE=6;
-
-    private int string_strength_max=127;
-    private int string_strength_min=0;
-    private int string_strength_var=5;
     private boolean control_slide_wheel=false;
     private int control_slide_wheel_variation=5;
     private int control_slide_up=31;
@@ -119,117 +103,8 @@ public class GuitarProperties {
 
     private boolean string_cutAlways=true;
     
-    public int getString_initial_value_lowE() {
-        return string_initial_value_lowE;
-    }
 
-    public void setString_initial_value_lowE(int string_initial_value_lowE) {
-        this.string_initial_value_lowE = string_initial_value_lowE;
-    }
 
-    public int getString_initial_value_A() {
-        return string_initial_value_A;
-    }
-
-    public void setString_initial_value_A(int string_initial_value_A) {
-        this.string_initial_value_A = string_initial_value_A;
-    }
-
-    public int getString_initial_value_D() {
-        return string_initial_value_D;
-    }
-
-    public void setString_initial_value_D(int string_initial_value_D) {
-        this.string_initial_value_D = string_initial_value_D;
-    }
-
-    public int getString_initial_value_G() {
-        return string_initial_value_G;
-    }
-
-    public void setString_initial_value_G(int string_initial_value_G) {
-        this.string_initial_value_G = string_initial_value_G;
-    }
-
-    public int getString_initial_value_B() {
-        return string_initial_value_B;
-    }
-
-    public void setString_initial_value_B(int string_initial_value_B) {
-        this.string_initial_value_B = string_initial_value_B;
-    }
-
-    public int getString_initial_value_highE() {
-        return string_initial_value_highE;
-    }
-
-    public void setString_initial_value_highE(int string_initial_value_highE) {
-        this.string_initial_value_highE = string_initial_value_highE;
-    }
-
-    public int getString_initial_channel_lowE() {
-        return string_initial_channel_lowE;
-    }
-
-    public void setString_initial_channel_lowE(int string_initial_channel_lowE) {
-        this.string_initial_channel_lowE = string_initial_channel_lowE;
-    }
-
-    public int getString_initial_channel_A() {
-        return string_initial_channel_A;
-    }
-
-    public void setString_initial_channel_A(int string_initial_channel_A) {
-        this.string_initial_channel_A = string_initial_channel_A;
-    }
-
-    public int getString_initial_channel_D() {
-        return string_initial_channel_D;
-    }
-
-    public void setString_initial_channel_D(int string_initial_channel_D) {
-        this.string_initial_channel_D = string_initial_channel_D;
-    }
-
-    public int getString_initial_channel_G() {
-        return string_initial_channel_G;
-    }
-
-    public void setString_initial_channel_G(int string_initial_channel_G) {
-        this.string_initial_channel_G = string_initial_channel_G;
-    }
-
-    public int getString_initial_channel_B() {
-        return string_initial_channel_B;
-    }
-
-    public void setString_initial_channel_B(int string_initial_channel_B) {
-        this.string_initial_channel_B = string_initial_channel_B;
-    }
-
-    public int getString_initial_channel_highE() {
-        return string_initial_channel_highE;
-    }
-
-    public void setString_initial_channel_highE(int string_initial_channel_highE) {
-        this.string_initial_channel_highE = string_initial_channel_highE;
-    }
-
-    public int getString_strength_max() {
-        return string_strength_max;
-    }
-
-    public void setString_strength_max(int string_strength_max) {
-        this.string_strength_max = string_strength_max;
-    }
-
-    public int getString_strength_min() {
-        return string_strength_min;
-    }
-
-    public void setString_strength_min(int string_strength_min) {
-        this.string_strength_min = string_strength_min;
-    }
 
     public boolean isControl_slide_wheel() {
         return control_slide_wheel;
@@ -321,13 +196,6 @@ public class GuitarProperties {
     
     
 
-    public int getString_strength_var() {
-        return string_strength_var;
-    }
-
-    public void setString_strength_var(int string_strength_var) {
-        this.string_strength_var = string_strength_var;
-    }
 
     public boolean isString_cutAlways() {
         return string_cutAlways;
@@ -687,12 +555,6 @@ public class GuitarProperties {
             
             
             
-            string_initial_value_lowE=Integer.parseInt(prop.getProperty("string_initial_value_lowE","40"));
-            string_initial_value_A=Integer.parseInt(prop.getProperty("string_initial_value_A","45"));
-            string_initial_value_D=Integer.parseInt(prop.getProperty("string_initial_value_D","50"));
-            string_initial_value_G=Integer.parseInt(prop.getProperty("string_initial_value_G","55"));
-            string_initial_value_B=Integer.parseInt(prop.getProperty("string_initial_value_B","59"));
-            string_initial_value_highE=Integer.parseInt(prop.getProperty("string_initial_value_highE","64"));
             string_cc_selection_value_lowE=Integer.parseInt(prop.getProperty("string_cc_selection_value_lowE","21"));
             string_cc_selection_value_A=Integer.parseInt(prop.getProperty("string_cc_selection_value_A","42"));
             string_cc_selection_value_D=Integer.parseInt(prop.getProperty("string_cc_selection_value_D","63"));
@@ -708,15 +570,6 @@ public class GuitarProperties {
             string_key_selection_value_highE=Integer.parseInt(prop.getProperty("string_key_selection_value_highE","31"));
             string_key_selection=prop.getProperty("string_key_selection","no").toLowerCase().contains("s");
             string_cc_selection=prop.getProperty("string_cc_selection","no").toLowerCase().contains("s");
-            string_initial_channel_lowE=Integer.parseInt(prop.getProperty("string_initial_channel_lowE","1"));
-            string_initial_channel_A=Integer.parseInt(prop.getProperty("string_initial_channel_A","2"));
-            string_initial_channel_D=Integer.parseInt(prop.getProperty("string_initial_channel_D","3"));
-            string_initial_channel_G=Integer.parseInt(prop.getProperty("string_initial_channel_G","4"));
-            string_initial_channel_B=Integer.parseInt(prop.getProperty("string_initial_channel_B","5"));
-            string_initial_channel_highE=Integer.parseInt(prop.getProperty("string_initial_channel_highE","6"));
-            string_strength_max=Integer.parseInt(prop.getProperty("string_strength_max","127"));
-            string_strength_min=Integer.parseInt(prop.getProperty("string_strength_min","0"));
-            string_strength_var=Integer.parseInt(prop.getProperty("string_strength_var","5"));
             control_slide_wheel=prop.getProperty("control_slide_wheel","no").toLowerCase().contains("s");
             control_slide_wheel_variation=Integer.parseInt(prop.getProperty("control_slide_wheel_variation","5"));
             control_slide_up=Integer.parseInt(prop.getProperty("control_slide_up","31"));
@@ -772,12 +625,6 @@ public class GuitarProperties {
             
             File f = new File("");
             //prop.load(new FileInputStream("./conf/"+archivo));
-            prop.setProperty("string_initial_value_lowE",""+string_initial_value_lowE)	;
-            prop.setProperty("string_initial_value_A",""+string_initial_value_A)	;
-            prop.setProperty("string_initial_value_D",""+string_initial_value_D)	;
-            prop.setProperty("string_initial_value_G",""+string_initial_value_G)	;
-            prop.setProperty("string_initial_value_B",""+string_initial_value_B)	;
-            prop.setProperty("string_initial_value_highE",""+string_initial_value_highE)	;
             prop.setProperty("string_cc_selection_value_lowE",""+string_cc_selection_value_lowE)	;
             prop.setProperty("string_cc_selection_value_A",""+string_cc_selection_value_A)	;
             prop.setProperty("string_cc_selection_value_D",""+string_cc_selection_value_D)	;
@@ -792,15 +639,6 @@ public class GuitarProperties {
             prop.setProperty("string_key_selection_value_highE",""+string_key_selection_value_highE)	;
             prop.setProperty("string_key_selection",string_key_selection ? "s" : "n")	;
             prop.setProperty("string_cc_selection",string_cc_selection ? "s" : "n")	;
-            prop.setProperty("string_initial_channel_lowE",""+string_initial_channel_lowE)	;
-            prop.setProperty("string_initial_channel_A",""+string_initial_channel_A)	;
-            prop.setProperty("string_initial_channel_D",""+string_initial_channel_D)	;
-            prop.setProperty("string_initial_channel_G",""+string_initial_channel_G)	;
-            prop.setProperty("string_initial_channel_B",""+string_initial_channel_B)	;
-            prop.setProperty("string_initial_channel_highE",""+string_initial_channel_highE)	;
-            prop.setProperty("string_strength_max",""+string_strength_max)	;
-            prop.setProperty("string_strength_min",""+string_strength_min)	;
-            prop.setProperty("string_strength_var",""+string_strength_var)	;
             prop.setProperty("control_slide_wheel",control_slide_wheel ? "s" : "n")	;
             prop.setProperty("control_slide_wheel_variation",""+control_slide_wheel_variation)	;
             prop.setProperty("control_slide_up",""+control_slide_up)	;

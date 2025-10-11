@@ -34,6 +34,7 @@ coira\gui\GuitarToMidi$6.class
 coira\guitarra\ordenes\OrdenSlideDown.class
 coira\entrada\GuitarraMustangEntrada.class
 coira\guitarra\eventos\EventoHandMute.class
+coira\guitarra\CuerdaV2.class
 coira\guitarra\eventos\EventoSlideDown.class
 coira\guitarra\ordenes\OrdenBotonA.class
 coira\guitarra\eventos\EventoLegato.class
@@ -69,7 +70,9 @@ coira\guitarra\ordenes\OrdenApagadoCuerda.class
 coira\guitarra\ordenes\OrdenGuitarra.class
 coira\guitarra\eventos\EventoMuteAll.class
 coira\guitarra\ordenes\OrdenBotonMasMenos.class
+coira\guitarra\ordenes\OrdenLegato.class
 coira\Midi\SalidaMidi$3.class
+coira\guitarra\CuerdaV2$1.class
 coira\guitarra\eventos\EventoBend.class
 com\coira\guitartomidi\USBHIDReader.class
 coira\guitarra\ControlCuerdas.class
