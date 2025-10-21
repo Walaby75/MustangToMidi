@@ -5,6 +5,7 @@
  */
 package coira.gui;
 
+import coira.Midi.ControladorSalidas;
 import coira.entrada.GuitarraMustangEntrada;
 import configuraciones.cuerdas.CFGCuerdas;
 import configuraciones.salida.CFGSalidas;
@@ -193,18 +194,21 @@ public class GuitarToMidi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRecargarActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-    String salidaSeleccionada = (String) comboSalida.getSelectedItem();
-    String cuerdasSeleccionadas = (String) comboCuerdas.getSelectedItem();
-    String vstSeleccionado = (String) comboVST.getSelectedItem();
+        String salidaSeleccionada = (String) comboSalida.getSelectedItem();
+        String cuerdasSeleccionadas = (String) comboCuerdas.getSelectedItem();
+        String vstSeleccionado = (String) comboVST.getSelectedItem();
 
-    System.out.println("Salida seleccionada: " + salidaSeleccionada);
-    System.out.println("Cuerdas seleccionadas: " + cuerdasSeleccionadas);
-    System.out.println("VST seleccionado: " + vstSeleccionado);
-        // TODO add your handling code here:
-    if (cuerdasSeleccionadas != null && !cuerdasSeleccionadas.equals(""))
-        CFGCuerdas.getInstance().configurar(cuerdasSeleccionadas);
-    if (salidaSeleccionada != null && !salidaSeleccionada.equals(""))
-        CFGSalidas.getInstance().configurar(salidaSeleccionada);
+        System.out.println("Salida seleccionada: " + salidaSeleccionada);
+        System.out.println("Cuerdas seleccionadas: " + cuerdasSeleccionadas);
+        System.out.println("VST seleccionado: " + vstSeleccionado);
+            // TODO add your handling code here:
+        if (cuerdasSeleccionadas != null && !cuerdasSeleccionadas.equals(""))
+            CFGCuerdas.getInstance().configurar(cuerdasSeleccionadas);
+        if (salidaSeleccionada != null && !salidaSeleccionada.equals("")){
+            CFGSalidas.getInstance().configurar(salidaSeleccionada);
+            ControladorSalidas.getInstance().configurar(CFGSalidas.getInstance());
+        }
+
     }//GEN-LAST:event_btnCargarActionPerformed
 
     /**

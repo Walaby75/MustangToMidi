@@ -4,17 +4,14 @@
  */
 package coira.guitarra;
 
-import coira.Midi.NotaMidi;
 import coira.guitarra.eventos.EventoLegato;
 import coira.guitarra.eventos.EventoTrasteCuerda;
 import coira.guitarra.ordenes.OrdenApagadoCuerda;
-import coira.guitarra.ordenes.OrdenApagadoCuerdaDelay;
 import coira.guitarra.ordenes.OrdenHammerOn;
 import coira.guitarra.ordenes.OrdenPullOff;
 import coira.guitarra.ordenes.OrdenPulsada;
 import coira.guitarra.ordenes.OrdenSlideDown;
 import coira.guitarra.ordenes.OrdenSlideUp;
-import coira.guitarra.ordenes.OrdenStopSlide;
 import coira.properties.GuitarProperties;
 import coira.salida.GuitarraMustangSalida;
 import configuraciones.cuerdas.CFGCuerdas;
@@ -246,7 +243,7 @@ public class Cuerda {
         }
         if (ultimoTrastePresionado!=traste){
             
-            GuitarraMustangSalida.getInstance().ejecutar(new EventoTrasteCuerda(traste, this.getCanal(), this.getCuerdaPosicion()));
+            GuitarraMustangSalida.getInstance().ejecutar(new EventoTrasteCuerda(traste, this.getCanal(), this.getCuerdaPosicion(),nombre));
         }
 
         
@@ -264,7 +261,7 @@ public class Cuerda {
                 System.out.println("fuerza " + fuerza);
                 
                 
-                GuitarraMustangSalida.getInstance().ejecutar(new OrdenPulsada(traste+primerNota+offset, fuerza,nombre));
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenPulsada(traste+primerNota+offset, fuerza,nombre,this));
                 
             }
             ultimaPulsada = cuerda;
@@ -289,16 +286,16 @@ public class Cuerda {
         if (correspondeLegato){
             if (variacion.getVariacion() < 0 && !variacion.isSlide()){
                 
-                GuitarraMustangSalida.getInstance().ejecutar(new OrdenPullOff(variacion.getVariacion(),ultimaFuerza ,nombre));
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenPullOff(variacion.getVariacion(),ultimaFuerza ,nombre, Cuerda.this));
             }else if (variacion.getVariacion() > 0 && !variacion.isSlide()){
                 
-                GuitarraMustangSalida.getInstance().ejecutar(new OrdenHammerOn(variacion.getVariacion(),ultimaFuerza ,nombre));
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenHammerOn(variacion.getVariacion(),ultimaFuerza ,nombre, Cuerda.this));
             }else if (variacion.getVariacion() < 0  && variacion.isSlide()){
                 
-                GuitarraMustangSalida.getInstance().ejecutar(new OrdenSlideDown(variacion.getVariacion(),ultimaFuerza ,nombre));
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenSlideDown(variacion.getVariacion(),ultimaFuerza ,nombre, Cuerda.this));
             }else if (variacion.getVariacion() > 0 && variacion.isSlide()){
                 
-                GuitarraMustangSalida.getInstance().ejecutar(new OrdenSlideUp(variacion.getVariacion(),ultimaFuerza ,nombre));
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenSlideUp(variacion.getVariacion(),ultimaFuerza ,nombre, Cuerda.this));
 
             }
         }

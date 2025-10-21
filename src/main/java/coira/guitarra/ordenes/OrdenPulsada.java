@@ -5,6 +5,7 @@
 package coira.guitarra.ordenes;
 
 import coira.Midi.NotaMidi;
+import coira.guitarra.Cuerda;
 
 /**
  *
@@ -31,10 +32,11 @@ public class OrdenPulsada extends OrdenGuitarra{
         this.nota = nota;
     }
 
-    public OrdenPulsada(int fuerza, int nota, String origen) {
+    public OrdenPulsada(int fuerza, int nota, String origen, Cuerda cuerda) {
         this.fuerza = fuerza;
         this.nota = nota;
         this.origen = origen;
+        this.cuerda = cuerda;
     }
     
     

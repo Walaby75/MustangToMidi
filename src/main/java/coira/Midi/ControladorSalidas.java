@@ -1,67 +1,74 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package coira.Midi;
 
-import coira.guitarra.ordenes.EnumeradoOrdenes;
-import coira.properties.GeneralProperties;
-import coira.properties.GuitarProperties;
+import configuraciones.salida.CFGSalidas;
+import configuraciones.salida.DataCFGSalida;
 import java.util.HashMap;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.midi.MidiDevice;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.MidiUnavailableException;
 
 /**
  *
- * @author Administrador
+ * @author Usuario
  */
 public class ControladorSalidas {
     
-    private boolean puertoRotativo = false;
-    private boolean allPorts = false;
-    private int cantidadPuertos = 3;
-    private int ultimoPuerto = -10;
-    private HashMap<Integer,Integer> cuerdas = new HashMap <Integer, Integer>();
-    private HashMap<Integer,Integer> puertos = new HashMap <Integer, Integer>();
+    private static ControladorSalidas instance;
+    private HashMap<String,MidiDevice> dispositivos;
     
-    private GeneralProperties generalProperties = null;
-    private GuitarProperties gp =null; 
-
-    public ControladorSalidas(GuitarProperties gp,GeneralProperties generalProperties) {
-        this.gp = gp;
-        this.generalProperties = generalProperties;
-        puertoRotativo = gp.isPort_signal_sending_rotative();
-        allPorts = gp.isPort_signal_sending_all();
-        cantidadPuertos = gp.getPort_signal_sending_quantity();
-    }
-
-    public String obtenerPuerto(int nroCuerda, EnumeradoOrdenes orden){
-        String resultado = "default";
-        if  (!puertoRotativo){
-            resultado = generalProperties.getPropertyAsString("midi.port."+nroCuerda);
-            
-        }else{
-            
-            Integer canalCuerda = cuerdas.get(nroCuerda);
-            if (canalCuerda == null){
-                //la cuerda no se envio todavia a ningun puerto
-                ultimoPuerto = (ultimoPuerto == -10 || ultimoPuerto >= cantidadPuertos) ? 1 : ultimoPuerto+1;
-                resultado = generalProperties.getPropertyAsString("midi.port."+ultimoPuerto);
-                cuerdas.put(nroCuerda, ultimoPuerto);
-                puertos.put(ultimoPuerto,nroCuerda);
-            }else{
-                Integer cuerdaCanal = puertos.get(canalCuerda);
-                if (cuerdaCanal == nroCuerda || orden.equals(EnumeradoOrdenes.BEND_OFF) || orden.equals(EnumeradoOrdenes.CORTE) || orden.equals(EnumeradoOrdenes.SLIDE_DOWN_OFF) || orden.equals(EnumeradoOrdenes.SLIDE_UP_OFF)|| orden.equals(EnumeradoOrdenes.SLIDE_OFF)){
-                    //fue la ultima cuerda del canal
-                    resultado = generalProperties.getPropertyAsString("midi.port."+canalCuerda);
-                }else{
-                    ultimoPuerto = (ultimoPuerto == -10 || ultimoPuerto >= cantidadPuertos) ? 1 : ultimoPuerto+1;
-                    resultado = generalProperties.getPropertyAsString("midi.port."+ultimoPuerto);
-                    cuerdas.put(nroCuerda, ultimoPuerto);
-                    puertos.put(ultimoPuerto,nroCuerda);
-                }
-            }
+    
+    public static ControladorSalidas getInstance(){
+        if (instance == null){
+            instance = new ControladorSalidas();
         }
-        return resultado;
+        return instance;
     }
     
     
+    public void configurar(Properties propiedades){
+        
+    }
+    
+    
+    public void configurar(CFGSalidas configuracion){
+        dispositivos = new HashMap<String,MidiDevice>();
+        for (DataCFGSalida cfg : configuracion.getSalidas().values()){
+            System.out.println(cfg.getPuerto());
+            dispositivos.put(cfg.getPuerto(), null);
+        }    
+        
+        
+        MidiDevice deviceLista=null;
+        MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
+        for (int i=0;i<infos.length;i++){
+            try {
+                deviceLista = MidiSystem.getMidiDevice(infos[i]);
+                System.out.println(deviceLista.getDeviceInfo().getName()+" - : "+i);
+                System.out.println(deviceLista.getReceivers());
+                
+                MidiDevice device = MidiSystem.getMidiDevice(infos[i]);
+                
+                String clave = deviceLista.getDeviceInfo().getName();
+                if (device.getMaxReceivers()!=0 && dispositivos.containsKey(clave)){
+                    System.out.println("[" + i + "] " + infos[i].getName()
+            + " | Receivers: " + device.getMaxReceivers()
+            + " | Transmitters: " + device.getMaxTransmitters());
+                    dispositivos.put(clave, device);
+                }
+            } catch (MidiUnavailableException ex) {
+                Logger.getLogger(ControladorSalidas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } 
+
+        
+    }
+            
 }

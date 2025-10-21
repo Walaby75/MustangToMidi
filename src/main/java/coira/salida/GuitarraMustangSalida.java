@@ -6,6 +6,7 @@ package coira.salida;
 
 import coira.guitarra.eventos.EventoTrasteCuerda;
 import coira.guitarra.ordenes.OrdenGuitarra;
+import coira.guitarra.ordenes.OrdenLegato;
 import coira.guitarra.ordenes.OrdenPulsada;
 
 /**
@@ -14,6 +15,9 @@ import coira.guitarra.ordenes.OrdenPulsada;
  */
 public class GuitarraMustangSalida {
     private static GuitarraMustangSalida instance;
+    
+    private boolean modoLegato=false;
+    private boolean muteOnchange = false;
     
     public static GuitarraMustangSalida getInstance(){
         if (instance == null){
@@ -26,11 +30,20 @@ public class GuitarraMustangSalida {
         System.out.println("Orden guitarra recibida : "+orden.getClass().getCanonicalName());
         if (orden instanceof OrdenPulsada){
            
+        } else if ( orden instanceof OrdenLegato) {
+            if (modoLegato){
+                
+            }
+                
+            
         }
     }
 
     public void ejecutar(EventoTrasteCuerda orden){
         System.out.println("Orden cuerda recibida : "+orden.getClass().getCanonicalName());
+        if (muteOnchange){
+            
+        }
     }
 
     

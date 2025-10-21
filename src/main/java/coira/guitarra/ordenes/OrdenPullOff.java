@@ -5,6 +5,7 @@
 package coira.guitarra.ordenes;
 
 import coira.Midi.NotaMidi;
+import coira.guitarra.Cuerda;
 
 /**
  *
@@ -31,10 +32,11 @@ public class OrdenPullOff extends OrdenLegato{
         this.fuerza = fuerza;
     }
 
-    public OrdenPullOff(int variacion, int fuerza, String origen) {
+    public OrdenPullOff(int variacion, int fuerza, String origen, Cuerda cuerda) {
         this.variacion = variacion;
         this.fuerza = fuerza;
         this.origen = origen;
+        this.cuerda = cuerda;
     }
 
     

@@ -54,7 +54,7 @@ public class SalidaMidi implements  Observer{
     private int bend =29;
     private int bendTones=0;
     private boolean slideBool=false;
-    private ControladorSalidas controlSalida = null;
+    private ControladorSalidasOLD controlSalida = null;
     private boolean sliding=false;
     private HashMap<Integer,Integer> cuerdasSliding = new HashMap <Integer,Integer>();
     
@@ -104,7 +104,7 @@ public class SalidaMidi implements  Observer{
             md.open();
         }
         
-       controlSalida = new ControladorSalidas(gp, generalProperties);
+       controlSalida = new ControladorSalidasOLD(gp, generalProperties);
     }
 
     public void slideUp(int disp,int canal,int variacion){

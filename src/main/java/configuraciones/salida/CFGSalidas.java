@@ -50,7 +50,7 @@ public class CFGSalidas {
             salidas = new HashMap<>();
             while (propiedades.getProperty("midi.chanel.String."+cuerda)!=null){
                 
-                Integer chanel = Integer.parseInt(propiedades.getProperty("midi.chanel.String."+cuerda));
+                Integer chanel = Integer.valueOf(propiedades.getProperty("midi.chanel.String."+cuerda));
                 String asignado = propiedades.getProperty("midi.port.String."+cuerda);
                 String puerto =  defecto ? propiedades.getProperty("midi.port.default") : propiedades.getProperty("midi.port."+asignado);
                 salidas.put(cuerda, new DataCFGSalida(puerto,chanel));

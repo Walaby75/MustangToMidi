@@ -55,6 +55,7 @@ C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenSwitchOnO
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenToNeck.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenToStrings.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\ControladorSalidas.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\ControladorSalidasOLD.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\NotaMidi.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\SalidaMidi.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\properties\GeneralProperties.java

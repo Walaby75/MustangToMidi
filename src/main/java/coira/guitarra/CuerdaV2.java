@@ -215,7 +215,7 @@ public class CuerdaV2 {
         }
         if (ultimoTrastePresionado!=traste){
             
-            GuitarraMustangSalida.getInstance().ejecutar(new EventoTrasteCuerda(traste, this.getCanal(), this.getCuerdaPosicion()));
+//            GuitarraMustangSalida.getInstance().ejecutar(new EventoTrasteCuerda(traste, this.getCanal(), this.getCuerdaPosicion()));
         }
 
         

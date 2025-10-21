@@ -11,13 +11,15 @@ package coira.guitarra.eventos;
 public class EventoTrasteCuerda extends Evento{
     int traste;
     int canal;
+    String origen;
   
             
 
-    public EventoTrasteCuerda(int traste, int canal, int cuerda) {
+    public EventoTrasteCuerda(int traste, int canal, int cuerda, String origen) {
         super(cuerda);
         this.traste = traste;
         this.canal =canal;
+        this.origen = origen;
 
     }
 
@@ -35,6 +37,14 @@ public class EventoTrasteCuerda extends Evento{
 
     public void setCanal(int canal) {
         this.canal = canal;
+    }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(String origen) {
+        this.origen = origen;
     }
 
     

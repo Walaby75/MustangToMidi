@@ -62,6 +62,7 @@ coira\properties\MyProperties.class
 coira\guitarra\Cuerda$1.class
 com\coira\guitartomidi\USBReader.class
 coira\guitarra\eventos\EventoCuerdaPulsada.class
+coira\Midi\ControladorSalidasOLD.class
 coira\guitarra\ordenes\OrdenToStrings.class
 coira\guitarra\ordenes\OrdenBendOff.class
 coira\guitarra\ordenes\OrdenBoton1.class
