@@ -151,42 +151,42 @@ public class EntradaGuitarra implements Runnable{
         if (data[1]!=olddata[1]){
             olddata[1]=data[1];
             switch (data[1]) {
-                case 16 -> {
+                case 16 : {
                     // enmudece todo
                     
                     GuitarraMustangSalida.getInstance().ejecutar(new OrdenApagado());
                 }
-                case 1 -> {
+                case 1 : {
                     // baja un semitono
                     
                     GuitarraMustangSalida.getInstance().ejecutar(new OrdenBajoFuerza());
                 }
-                case 17 -> {
+                case 17 : {
                     //sube un semitono 17
                     
                     GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonMenos());
                 }
-                case 18 -> {
+                case 18 : {
                     //vuelve tono al inicio 18
                     
                     GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonMas());
                 }
-                case 3 -> {
+                case 3 : {
                     //sube fuerzas topes 3
                     
                     GuitarraMustangSalida.getInstance().ejecutar(new OrdenBotonMasMenos());
                 }
-                case 2 -> {
+                case 2 : {
                     //baja fuerzas tope 2
                     
                     GuitarraMustangSalida.getInstance().ejecutar(new OrdenSuboFuerza());
                 }
-                case 19 -> {
+                case 19 : {
                     //vuelve fuerzas al origen
                     
                     GuitarraMustangSalida.getInstance().ejecutar(new OrdenReseteoFuerza());
                 }
-                default -> {
+                default : {
                 }
             }
             

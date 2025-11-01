@@ -5,8 +5,10 @@
  */
 package coira.gui;
 
+import VST.VSTGuitarras;
 import coira.Midi.ControladorSalidas;
 import coira.entrada.GuitarraMustangEntrada;
+import coira.salida.GuitarraMustangSalida;
 import configuraciones.cuerdas.CFGCuerdas;
 import configuraciones.salida.CFGSalidas;
 import java.io.File;
@@ -207,6 +209,9 @@ public class GuitarToMidi extends javax.swing.JFrame {
         if (salidaSeleccionada != null && !salidaSeleccionada.equals("")){
             CFGSalidas.getInstance().configurar(salidaSeleccionada);
             ControladorSalidas.getInstance().configurar(CFGSalidas.getInstance());
+        }
+        if(vstSeleccionado != null && !salidaSeleccionada.equals("")){
+            GuitarraMustangSalida.getInstance().iniciar(vstSeleccionado);
         }
 
     }//GEN-LAST:event_btnCargarActionPerformed

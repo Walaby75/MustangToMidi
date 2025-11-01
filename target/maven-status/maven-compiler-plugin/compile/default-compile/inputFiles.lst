@@ -72,4 +72,10 @@ C:\GuitarToMidi\GuitarToMidi\src\main\java\configuraciones\cuerdas\CFGCuerdas.ja
 C:\GuitarToMidi\GuitarToMidi\src\main\java\configuraciones\cuerdas\DataCFGCuerda.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\configuraciones\salida\CFGSalidas.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\configuraciones\salida\DataCFGSalida.java
-C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\vst.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\Ample.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\Generic.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\ModoBass.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\RealGuitar.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\Vir2Acoustic.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\Vir2Electric.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\VSTGuitarras.java

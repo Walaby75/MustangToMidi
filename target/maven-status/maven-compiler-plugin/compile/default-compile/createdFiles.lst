@@ -9,8 +9,8 @@ coira\guitarra\eventos\EventoHammerOn.class
 coira\guitarra\ordenes\OrdenSwitchOnOffSlide.class
 coira\guitarra\eventos\EventoNotaPulsada.class
 coira\guitarra\ordenes\OrdenToNeck.class
-VST\vst.class
 coira\guitarra\ordenes\OrdenReseteoFuerza.class
+VST\VSTGuitarras.class
 coira\gui\GuitarToMidi$3.class
 configuraciones\salida\DataCFGSalida.class
 coira\guitarra\ordenes\OrdenBendDown.class
@@ -34,11 +34,14 @@ coira\gui\GuitarToMidi$6.class
 coira\guitarra\ordenes\OrdenSlideDown.class
 coira\entrada\GuitarraMustangEntrada.class
 coira\guitarra\eventos\EventoHandMute.class
+VST\Generic.class
 coira\guitarra\CuerdaV2.class
 coira\guitarra\eventos\EventoSlideDown.class
 coira\guitarra\ordenes\OrdenBotonA.class
 coira\guitarra\eventos\EventoLegato.class
 coira\Midi\SalidaMidi$1.class
+VST\Vir2Electric.class
+VST\Vir2Acoustic.class
 coira\guitarra\ordenes\OrdenMovePadOff.class
 coira\Midi\SalidaMidi$5.class
 coira\guitarra\eventos\EventoFretOn.class
@@ -76,8 +79,10 @@ coira\Midi\SalidaMidi$3.class
 coira\guitarra\CuerdaV2$1.class
 coira\guitarra\eventos\EventoBend.class
 com\coira\guitartomidi\USBHIDReader.class
+VST\ModoBass.class
 coira\guitarra\ControlCuerdas.class
 coira\guitarra\eventos\Evento.class
+VST\Ample.class
 coira\Midi\SalidaMidi$6.class
 coira\guitarra\ordenes\OrdenBoton2.class
 coira\util\Util.class
@@ -86,4 +91,5 @@ coira\gui\GuitarToMidi$2.class
 coira\gui\GuitarToMidi$5.class
 coira\gui\GuitarToMidi.class
 coira\Pruebas\MainConsola.class
+VST\RealGuitar.class
 coira\guitarra\ordenes\EnumeradoOrdenes.class
