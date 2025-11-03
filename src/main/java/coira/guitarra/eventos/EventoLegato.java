@@ -10,6 +10,8 @@ package coira.guitarra.eventos;
  */
 public class EventoLegato extends  Evento{
     
+    int tonoOrigen;
+    int tonoFinal;
     int variacion;
     boolean slide;
 
@@ -29,6 +31,34 @@ public class EventoLegato extends  Evento{
         this.slide = slide;
     }
 
+    public int getTonoOrigen() {
+        return tonoOrigen;
+    }
+
+    public void setTonoOrigen(int tonoOrigen) {
+        this.tonoOrigen = tonoOrigen;
+    }
+
+    public int getTonoFinal() {
+        return tonoFinal;
+    }
+
+    public void setTonoFinal(int tonoFinal) {
+        this.tonoFinal = tonoFinal;
+    }
+
+    @Override
+    public int getCuerda() {
+        return cuerda;
+    }
+
+    @Override
+    public void setCuerda(int cuerda) {
+        this.cuerda = cuerda;
+    }
+
+    
+    
     public EventoLegato(int variacion, boolean slide, int cuerda) {
         super(cuerda);
         this.variacion = variacion;

@@ -56,7 +56,9 @@ C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenToNeck.ja
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\guitarra\ordenes\OrdenToStrings.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\ControladorSalidas.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\ControladorSalidasOLD.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\ListaMidiOrdenada.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\NotaMidi.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\OrdenMidi2025.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\Midi\SalidaMidi.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\properties\GeneralProperties.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\coira\properties\GuitarProperties.java
@@ -75,6 +77,7 @@ C:\GuitarToMidi\GuitarToMidi\src\main\java\configuraciones\salida\DataCFGSalida.
 C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\Ample.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\Generic.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\ModoBass.java
+C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\ParaCopiarPorNuevosVsts.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\RealGuitar.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\Vir2Acoustic.java
 C:\GuitarToMidi\GuitarToMidi\src\main\java\VST\Vir2Electric.java

@@ -10,9 +10,11 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiDevice;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.ShortMessage;
 
 /**
  *
@@ -60,6 +62,7 @@ public class ControladorSalidas {
                     System.out.println("[" + i + "] " + infos[i].getName()
             + " | Receivers: " + device.getMaxReceivers()
             + " | Transmitters: " + device.getMaxTransmitters());
+                    device.open();
                     dispositivos.put(clave, device);
                 }
             } catch (MidiUnavailableException ex) {
@@ -70,5 +73,27 @@ public class ControladorSalidas {
 
         
     }
+    
+    public void enviar(ListaMidiOrdenada lista){
+        for (OrdenMidi2025 orden : lista){
+            try {
+                System.out.printf("→ Enviando: %s canal=%d nota=%d fuerza=%d%n",
+    orden.getComando() == ShortMessage.NOTE_ON ? "NOTE_ON" :
+    orden.getComando() == ShortMessage.NOTE_OFF ? "NOTE_OFF" : "OTRO",
+    orden.getCanal(), orden.getNota(), orden.getFuerza());
+                System.out.println("→ Dispositivo: " + dispositivos.get(orden.getPuerto()));
+                ShortMessage mensaje = new ShortMessage();
+                mensaje.setMessage(orden.getComando(),orden.getCanal()-1,orden.getNota(),orden.getFuerza());
+                dispositivos.get(orden.getPuerto()).getReceiver().send(mensaje, -1);
+            } catch (InvalidMidiDataException ex) {
+                Logger.getLogger(ControladorSalidas.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MidiUnavailableException ex) {
+                Logger.getLogger(ControladorSalidas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    
+    
             
 }

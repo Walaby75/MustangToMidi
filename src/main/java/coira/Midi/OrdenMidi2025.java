@@ -88,7 +88,21 @@ public class OrdenMidi2025 implements Comparable<OrdenMidi2025> {
     public void setDelay(int delay) {
         this.delay = delay;
     }
+
+    public OrdenMidi2025(int orden, Cuerda cuerda, String puerto, Integer canal, int comando, int nota, int fuerza, int delay) {
+        this.orden = orden;
+        this.cuerda = cuerda;
+        this.puerto = puerto;
+        this.canal = canal;
+        this.comando = comando;
+        this.nota = nota;
+        this.fuerza = fuerza;
+        this.delay = delay;
+    }
     
+    public OrdenMidi2025(){
+        
+    }
     
     
     

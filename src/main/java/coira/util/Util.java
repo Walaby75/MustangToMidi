@@ -74,7 +74,8 @@ public class Util {
         }
 
         // Calcula el valor MIDI para la nota
-        return 21 + noteIndex + (octave * 12); // 21 es el MIDI de A0
+        return (octave + 1) * 12 + noteIndex;
+        //return 21 + noteIndex + (octave * 12); // 21 es el MIDI de A0
     }
 
     public static void main(String[] args) {

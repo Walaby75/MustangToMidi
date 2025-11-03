@@ -15,6 +15,7 @@ public class OrdenPulsada extends OrdenGuitarra{
 
     int fuerza;
     int nota;
+    int notaAnterior;
 
     public int getFuerza() {
         return fuerza;
@@ -32,11 +33,20 @@ public class OrdenPulsada extends OrdenGuitarra{
         this.nota = nota;
     }
 
-    public OrdenPulsada(int fuerza, int nota, String origen, Cuerda cuerda) {
+    public OrdenPulsada(int fuerza, int nota, int notaAnterior, String origen, Cuerda cuerda) {
         this.fuerza = fuerza;
         this.nota = nota;
+        this.notaAnterior = notaAnterior;
         this.origen = origen;
         this.cuerda = cuerda;
+    }
+
+    public int getNotaAnterior() {
+        return notaAnterior;
+    }
+
+    public void setNotaAnterior(int notaAnterior) {
+        this.notaAnterior = notaAnterior;
     }
     
     

@@ -59,8 +59,8 @@ public class Vir2Acoustic extends VSTGuitarras{
     }
 
     @Override
-    public ListaMidiOrdenada pullString(Integer cuerda, Integer tono, Integer fuerza, Cuerda cuerdaObjeto) {
-        ListaMidiOrdenada lista = super.pullString(cuerda, tono, fuerza, cuerdaObjeto);
+    public ListaMidiOrdenada pullString(Integer cuerda, Integer tono, Integer tonoAnterior, Integer fuerza, Cuerda cuerdaObjeto) {
+        ListaMidiOrdenada lista = super.pullString(cuerda, tono,tonoAnterior, fuerza, cuerdaObjeto);
         return lista;
     }
 

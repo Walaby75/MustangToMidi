@@ -243,7 +243,7 @@ public class Cuerda {
         }
         if (ultimoTrastePresionado!=traste){
             
-            GuitarraMustangSalida.getInstance().ejecutar(new EventoTrasteCuerda(traste, this.getCanal(), this.getCuerdaPosicion(),nombre));
+            GuitarraMustangSalida.getInstance().ejecutar(new EventoTrasteCuerda(traste,ultimoTrastePresionado, this.getCanal(), this.getCuerdaPosicion(),nombre,this));
         }
 
         
@@ -261,7 +261,7 @@ public class Cuerda {
                 System.out.println("fuerza " + fuerza);
                 
                 
-                GuitarraMustangSalida.getInstance().ejecutar(new OrdenPulsada(traste+primerNota+offset, fuerza,nombre,this));
+                GuitarraMustangSalida.getInstance().ejecutar(new OrdenPulsada(fuerza,traste+primerNota+offset, ultimoTraste+primerNota+offset,nombre,this));
                 
             }
             ultimaPulsada = cuerda;
@@ -321,10 +321,13 @@ miThread.start();
             if (ultimoTrastePresionado != traste &&   ahora.getTime()-momentoPulsada.getTime()<=obtenerSustain(ultimaPulsada)){
             //if (ultimoTrastePresionado != traste && traste!=0 && ultimoTraste !=0 && ultimoTrastePresionado != 0){// && ahora.getTime()-momentoPulsada.getTime()<tiempoToSlide){
             momentoPulsada= new Date();
-                retorno.setVariacion(traste - ultimoTrastePresionado);
+                retorno.setVariacion(traste - ultimoTrastePresionado); 
+                retorno.setTonoOrigen(ultimoTrastePresionado +primerNota+offset);
+                retorno.setTonoFinal(traste +primerNota+offset);
                 if ((Math.abs(traste-ultimoTrastePresionado)>1 &&(traste==0 ||ultimoTrastePresionado ==0 ))){
                     //traste==ultimoTraste || 
                     retorno.setVariacion(0);
+
                     //retorno = -10;
                 }else if (Math.abs(traste-ultimoTrastePresionado)>1 || (Math.abs(traste-ultimoTrastePresionado)==1 &&(traste==0 ||ultimoTrastePresionado ==0 ))){
                     retorno.setSlide(false);

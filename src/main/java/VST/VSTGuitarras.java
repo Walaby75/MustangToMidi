@@ -5,7 +5,9 @@
 package VST;
 
 import coira.Midi.ListaMidiOrdenada;
+import coira.Midi.OrdenMidi2025;
 import coira.guitarra.Cuerda;
+import javax.sound.midi.ShortMessage;
 
 /**
  *
@@ -61,8 +63,11 @@ public class VSTGuitarras {
     };
     
     
-    public ListaMidiOrdenada pullString(Integer cuerda,Integer tono, Integer fuerza, Cuerda cuerdaObjeto){
+    public ListaMidiOrdenada pullString(Integer cuerda,Integer tono, Integer tonoAnterior, Integer fuerza, Cuerda cuerdaObjeto){
         ListaMidiOrdenada lista = new ListaMidiOrdenada();
+        lista.add(new OrdenMidi2025(100,cuerdaObjeto,cuerdaObjeto.getPuerto(),cuerdaObjeto.getCanal(),ShortMessage.NOTE_OFF,tonoAnterior,fuerza,0));
+        lista.add(new OrdenMidi2025(200,cuerdaObjeto,cuerdaObjeto.getPuerto(),cuerdaObjeto.getCanal(),ShortMessage.NOTE_ON,tono,fuerza,0));
+        
         // agregar órdenes comunes
         return lista;
     };
