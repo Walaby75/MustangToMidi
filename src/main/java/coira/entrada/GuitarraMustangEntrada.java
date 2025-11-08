@@ -7,6 +7,8 @@ package coira.entrada;
 
 import coira.guitarra.ControlCuerdas;
 import coira.guitarra.DataCuerda;
+import coira.guitarra.eventos.EventoMuteAll;
+import coira.guitarra.ordenes.OrdenApagado;
 import coira.guitarra.ordenes.OrdenBoton1;
 import coira.guitarra.ordenes.OrdenBoton2;
 import coira.guitarra.ordenes.OrdenBotonA;
@@ -39,7 +41,7 @@ public class GuitarraMustangEntrada{
     int string_E, string_A,string_D,string_G,string_B,string_e;
 
     
-    ControlCuerdas controlCuerdas;
+    
     
     boolean boton1=false;
     boolean boton2=false;
@@ -58,7 +60,7 @@ public class GuitarraMustangEntrada{
         
         dev = hidServices.getHidDevice(vendorId, productId, null);
         
-        controlCuerdas = new ControlCuerdas();
+        
     }
 
     
@@ -100,7 +102,7 @@ public class GuitarraMustangEntrada{
         cuerdas.put(2,new DataCuerda(string_B, data[13]));
         cuerdas.put(1,new DataCuerda(string_e, data[14]));
         
-        controlCuerdas.detectoCambio(cuerdas);
+        ControlCuerdas.getInstance().detectoCambio(cuerdas);
         
         
         interpretoByte1(data,olddata);
@@ -115,6 +117,7 @@ public class GuitarraMustangEntrada{
             switch (data[1]) {
                 case 16 : {
                     // enmudece todo
+                    GuitarraMustangSalida.getInstance().ejecutar(new OrdenApagado());
 
                 }
                 case 1 : {

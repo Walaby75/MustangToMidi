@@ -32,11 +32,13 @@ public class OrdenSlideDown extends OrdenLegato{
         this.fuerza = fuerza;
     }
 
-    public OrdenSlideDown(int variacion, int fuerza, String origen, Cuerda cuerda) {
+    public OrdenSlideDown(int variacion, int fuerza, String origen, Cuerda cuerda, int tonoOrigen, int tonoDestino) {
         this.variacion = variacion;
         this.fuerza = fuerza;
         this.origen = origen;
         this.cuerda = cuerda;
+        this.tonoOrigen = tonoOrigen;
+        this.tonoDestino = tonoDestino;
     }
     
     

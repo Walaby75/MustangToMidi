@@ -73,7 +73,6 @@ public class EntradaGuitarra implements Runnable{
         dev = hidServices.getHidDevice(vendorId, productId, null);
         
         guitarProperties=gp;
-        controlCuerdas = new ControlCuerdas();
     }
 
     

@@ -32,11 +32,13 @@ public class OrdenHammerOn extends OrdenLegato{
         this.fuerza = fuerza;
     }
 
-    public OrdenHammerOn(int variacion, int fuerza, String origen, Cuerda cuerda) {
+    public OrdenHammerOn(int variacion, int fuerza, String origen, Cuerda cuerda, int tonoOrigen, int tonoDestino) {
         this.variacion = variacion;
         this.fuerza = fuerza;
         this.origen = origen;
         this.cuerda = cuerda;
+        this.tonoOrigen = tonoOrigen;
+        this.tonoDestino = tonoDestino;
     }
     
     

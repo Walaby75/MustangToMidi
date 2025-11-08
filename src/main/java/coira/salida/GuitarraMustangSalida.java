@@ -14,6 +14,9 @@ import VST.Vir2Electric;
 import coira.Midi.ControladorSalidas;
 import coira.Midi.ListaMidiOrdenada;
 import coira.guitarra.eventos.EventoTrasteCuerda;
+import coira.guitarra.ordenes.OrdenApagado;
+import coira.guitarra.ordenes.OrdenBoton1;
+import coira.guitarra.ordenes.OrdenBoton2;
 import coira.guitarra.ordenes.OrdenGuitarra;
 import coira.guitarra.ordenes.OrdenHammerOn;
 import coira.guitarra.ordenes.OrdenLegato;
@@ -49,21 +52,27 @@ public class GuitarraMustangSalida {
             propiedades.load(fis);
             if (propiedades.getProperty("VST").equalsIgnoreCase("ample")){
                 vst = new Ample();
+                vst.setPropiedades(propiedades);
             } else if (propiedades.getProperty("VST").equalsIgnoreCase("generic")){
                 vst = new Generic();
+                vst.setPropiedades(propiedades);
             } else if (propiedades.getProperty("VST").equalsIgnoreCase("modoBass")){
                 vst = new ModoBass();
+                vst.setPropiedades(propiedades);
             } else if (propiedades.getProperty("VST").equalsIgnoreCase("realGuitar")){
                 vst = new RealGuitar();
+                vst.setPropiedades(propiedades);
             } else if (propiedades.getProperty("VST").equalsIgnoreCase("vir2Acoustic")){
                 vst = new Vir2Acoustic();
+                vst.setPropiedades(propiedades);
                 
             }else if (propiedades.getProperty("VST").equalsIgnoreCase("vir2Electric")){
                 vst = new Vir2Electric();
+                vst.setPropiedades(propiedades);
                 
             }else {
                 vst = new Generic();
-                
+                vst.setPropiedades(propiedades);
             }
             
         } catch (IOException e) {
@@ -91,15 +100,26 @@ public class GuitarraMustangSalida {
             }
                 
             
+        } else if ( orden instanceof OrdenApagado) {
+            lista = vst.stopAll();
+        } else if ( orden instanceof OrdenBoton1 ){
+            modoLegato = !modoLegato;
+        } else if ( orden instanceof OrdenBoton2 ){
+            muteOnchange = !muteOnchange;
         }
         ControladorSalidas.getInstance().enviar(lista);
     }
 
     public void ejecutar(EventoTrasteCuerda orden){
+        ListaMidiOrdenada lista= new ListaMidiOrdenada(true);
         //System.out.println("Orden cuerda recibida : "+orden.getClass().getCanonicalName());
-        if (muteOnchange){
-            
+        
+        if (muteOnchange && !modoLegato){
+            lista = vst.stop(0, 0, 0, 0, orden.getCuerdaObjeto());
+                    //slideDown(aux.getVariacion(), aux.getTonoOrigen(), aux.getTonoDestino(), aux.getFuerza(), aux.getCuerda());
+
         }
+        ControladorSalidas.getInstance().enviar(lista);
     }
 
     

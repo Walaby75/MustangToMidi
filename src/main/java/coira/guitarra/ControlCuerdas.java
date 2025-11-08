@@ -17,6 +17,7 @@ import java.util.Map;
  */
 public class ControlCuerdas  {
     
+    static ControlCuerdas instance  = null;
     Cuerda cuerda_6 ;
     Cuerda cuerda_5 ;
     Cuerda cuerda_4 ;
@@ -82,47 +83,9 @@ public class ControlCuerdas  {
 
     public void setGuitarProperties(GuitarProperties guitarProperties) {
         this.guitarProperties = guitarProperties;
-/*
-        cuerda_6.setGuitarProperties(guitarProperties);
-        cuerda_6.setPrimerNota(guitarProperties.getString_initial_value_lowE());
-        cuerda_5.setGuitarProperties(guitarProperties);
-        cuerda_5.setPrimerNota(guitarProperties.getString_initial_value_A());
-        cuerda_4.setGuitarProperties(guitarProperties);
-        cuerda_4.setPrimerNota(guitarProperties.getString_initial_value_D());
-        cuerda_3.setGuitarProperties(guitarProperties);
-        cuerda_3.setPrimerNota(guitarProperties.getString_initial_value_G());
-        cuerda_2.setGuitarProperties(guitarProperties);
-        cuerda_2.setPrimerNota(guitarProperties.getString_initial_value_B());
-        cuerda_1.setGuitarProperties(guitarProperties);
-        cuerda_1.setPrimerNota(guitarProperties.getString_initial_value_highE());
-*/
+
     }
 
-    /*
-    public ControlCuerdas(GuitarProperties gp, GeneralProperties prop) {
-    
-        guitarProperties = gp;
-        this.prop = prop;
-        cuerda_6 = new Cuerda(guitarProperties.getString_initial_value_lowE(), guitarProperties.getString_initial_channel_lowE(),prop.getPropertyAsInt("midi.port.String.lowE", guitarProperties.getString_initial_channel_lowE()),guitarProperties.getString_cc_selection_value_lowE(),guitarProperties.getString_key_selection_value_lowE());
-        cuerda_5 = new Cuerda(guitarProperties.getString_initial_value_A(), guitarProperties.getString_initial_channel_A(),prop.getPropertyAsInt("midi.port.String.A", guitarProperties.getString_initial_channel_A()),guitarProperties.getString_cc_selection_value_A(),guitarProperties.getString_key_selection_value_A());
-        cuerda_4 = new Cuerda(guitarProperties.getString_initial_value_D(), guitarProperties.getString_initial_channel_D(),prop.getPropertyAsInt("midi.port.String.D", guitarProperties.getString_initial_channel_D()),guitarProperties.getString_cc_selection_value_D(),guitarProperties.getString_key_selection_value_D());
-        cuerda_3 = new Cuerda(guitarProperties.getString_initial_value_G(), guitarProperties.getString_initial_channel_G(),prop.getPropertyAsInt("midi.port.String.G", guitarProperties.getString_initial_channel_G()),guitarProperties.getString_cc_selection_value_G(),guitarProperties.getString_key_selection_value_G());
-        cuerda_2 = new Cuerda(guitarProperties.getString_initial_value_B(), guitarProperties.getString_initial_channel_B(),prop.getPropertyAsInt("midi.port.String.B", guitarProperties.getString_initial_channel_B()),guitarProperties.getString_cc_selection_value_B(),guitarProperties.getString_key_selection_value_B());
-        cuerda_1 = new Cuerda(guitarProperties.getString_initial_value_highE(), guitarProperties.getString_initial_channel_highE(),prop.getPropertyAsInt("midi.port.String.highE", guitarProperties.getString_initial_channel_highE()),guitarProperties.getString_cc_selection_value_highE(),guitarProperties.getString_key_selection_value_highE());
-        cuerda_6.setGuitarProperties(guitarProperties);
-        cuerda_5.setGuitarProperties(guitarProperties);
-        cuerda_4.setGuitarProperties(guitarProperties);
-        cuerda_3.setGuitarProperties(guitarProperties);
-        cuerda_2.setGuitarProperties(guitarProperties);
-        cuerda_1.setGuitarProperties(guitarProperties);
-        addObserver(cuerda_6);
-        addObserver(cuerda_5);
-        addObserver(cuerda_4);
-        addObserver(cuerda_3);
-        addObserver(cuerda_2);
-        addObserver(cuerda_1);
-    
-    }*/
     
     public void detectoCambio(Map<Integer,DataCuerda> cuerdas ){
         
@@ -135,21 +98,16 @@ public class ControlCuerdas  {
         
         
     }
-/*    
-    public void addObserver(Observer o){
-        super.addObserver(o);
+
+    public static ControlCuerdas getInstance(){
+        if (instance == null){
+            instance = new ControlCuerdas();
+        }
         
-        cuerda_6.addObserver(o);
-        cuerda_5.addObserver(o);
-        cuerda_4.addObserver(o);
-        cuerda_3.addObserver(o);
-        cuerda_2.addObserver(o);
-        cuerda_1.addObserver(o);
-        
-    }*/
+        return instance;
+    }
     
-    
-    public ControlCuerdas(){
+    private ControlCuerdas(){
         if (CFGCuerdas.getInstance().getCuerdas().get(6) != null){
             cuerda_6 = new Cuerda("cuerda_6",CFGCuerdas.getInstance().getCuerdas().get(6).getTonoInicial(), CFGSalidas.getInstance().getSalidas().get(6).getCanal(),CFGSalidas.getInstance().getSalidas().get(6).getPuerto(),6);
         
