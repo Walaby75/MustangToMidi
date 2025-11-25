@@ -88,14 +88,26 @@ public class ControlCuerdas  {
 
     
     public void detectoCambio(Map<Integer,DataCuerda> cuerdas ){
-        
+        if (cuerda_6 != null){
         cuerda_6.interpretoEvento(cuerdas.get(6).traste,cuerdas.get(6).fuerzaGolpe);
+        }
+        if (cuerda_6 != null){
+        }
+        if (cuerda_5 != null){
         cuerda_5.interpretoEvento(cuerdas.get(5).traste,cuerdas.get(5).fuerzaGolpe);
+        }
+        if (cuerda_4 != null){
         cuerda_4.interpretoEvento(cuerdas.get(4).traste,cuerdas.get(4).fuerzaGolpe);
+        }
+        if (cuerda_3 != null){
         cuerda_3.interpretoEvento(cuerdas.get(3).traste,cuerdas.get(3).fuerzaGolpe);
+        }
+        if (cuerda_2 != null){
         cuerda_2.interpretoEvento(cuerdas.get(2).traste,cuerdas.get(2).fuerzaGolpe);
+        }
+        if (cuerda_1 != null){
         cuerda_1.interpretoEvento(cuerdas.get(1).traste,cuerdas.get(1).fuerzaGolpe);
-        
+        }        
         
     }
 
